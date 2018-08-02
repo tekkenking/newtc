@@ -21,6 +21,7 @@ class CreateFlatsTable extends Migration
                     ->on('buildings');
             $table->string('name');
             $table->integer('rooms');
+            $table->string('master_accountid');
             $table->timestamps();
         });
     }

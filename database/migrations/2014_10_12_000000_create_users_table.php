@@ -15,6 +15,10 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('userstatus_id')->unsigned();
+            $table->foreign('userstatus_id')
+                ->references('id')
+                ->on('userstatuses');
             $table->integer('profile_id')->unsigned();
             $table->foreign('profile_id')
                 ->references('id')

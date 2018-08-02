@@ -54,4 +54,9 @@ class User extends Authenticatable
     {
         return $this->morphTo();
     }
+
+    public function userstatus()
+    {
+        return $this->belongsTo(Userstatus::class);
+    }
 }

@@ -11,4 +11,15 @@ class Customer extends Model
         return $this->morphOne(User::class, 'profile');
     }
 
+    public function flats()
+    {
+        return $this->belongsToMany(Flat::class)
+        ->withPivot('is_linked', 'unlinked_date');
+    }
+
+    public function flat()
+    {
+        return $this->flats()->where('is_linked', 1);
+    }
+
 }

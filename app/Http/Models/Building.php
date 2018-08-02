@@ -18,7 +18,7 @@ class Building extends Model
 
     public function barcode()
     {
-        return $this->barcodes()->where('barcodestatus_id', 1)->first();
+        return $this->barcodes()->where('barcodestatus_id', 1);
     }
 
     public function buildingstatus()
