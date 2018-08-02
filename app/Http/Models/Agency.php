@@ -10,4 +10,14 @@ class Agency extends Model
     {
         return $this->belongsTo(Lga::class);
     }
+
+    public function tcstaff()
+    {
+        return $this->belongsTo(Tcstaff::class);
+    }
+
+    public function agencystaff()
+    {
+        return $this->hasMany(Agencystaff::class);
+    }
 }

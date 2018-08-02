@@ -15,6 +15,12 @@ class CreateFlatsTable extends Migration
     {
         Schema::create('flats', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('building_id')->unsigned();
+            $table->foreign('building_id')
+                    ->references('id')
+                    ->on('buildings');
+            $table->string('name');
+            $table->integer('rooms');
             $table->timestamps();
         });
     }

@@ -10,4 +10,9 @@ class Tcstaff extends Model
     {
         return $this->morphOne(User::class, 'profile');
     }
+
+    public function agencies()
+    {
+        return $this->hasMany(Agency::class);
+    }
 }

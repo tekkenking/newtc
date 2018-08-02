@@ -15,4 +15,9 @@ class Agencystaff extends Model
     {
         return $this->belongsTo(Lga::class);
     }
+
+    public function agency()
+    {
+        return $this->belongsTo(Agency::class);
+    }
 }
