@@ -52,11 +52,6 @@ class User extends Authenticatable
     //RELATIONSHIPS DEFININATIONS
     public function profile()
     {
-        return $this->hasOne(Profile::class);
-    }
-
-    public function country()
-    {
-        return $this->belongsTo(Country::class);
+        return $this->morphTo();
     }
 }
