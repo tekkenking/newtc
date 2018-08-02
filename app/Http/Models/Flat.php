@@ -16,4 +16,10 @@ class Flat extends Model
     {
         return $this->customers()->where('is_linked', 1);
     }
+
+    public function agencies()
+    {
+        return $this->belongsToMany(Agency::class)
+        ->withPivot('accountid', 'is_linked', 'unlinked_date');
+    }
 }

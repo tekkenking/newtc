@@ -20,4 +20,25 @@ class Agency extends Model
     {
         return $this->hasMany(Agencystaff::class);
     }
+
+    public function flats()
+    {
+        return $this->belongsToMany(Flat::class)
+        ->withPivot('accountid', 'is_linked', 'unlinked_date');
+    }
+
+    public function agencycategory()
+    {
+        return $this->belongsTo(Agencycategory::class);
+    }
+
+    public function agencymode()
+    {
+        return $this->belongsTo(Agencymode::class);
+    }
+
+    public function agencystatus()
+    {
+        return $this->belongsTo(Agencystatus::class);
+    }
 }
