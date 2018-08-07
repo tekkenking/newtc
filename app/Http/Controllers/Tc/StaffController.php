@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Tc;
 
 use App\Http\Repos\RoleRepo;
 use App\Http\Repos\TcstaffRepo;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DataTables;
 use Yajra\DataTables\Html\Builder;
@@ -15,10 +14,19 @@ class StaffController extends Controller
     {
         if (request()->ajax()) {
             return DataTables::of($tcstaffRepo->model->query())
+                ->addColumn('role', function($qr){
+                    $perm = "";
+                    if($qr->user->roles->isNotEmpty()){
+                        foreach($qr->user->roles as $role){
+                            $perm .= "<span class='label label-plain label-sm'>".$role->name."</span> ";
+                        }
+                    }
+                    return $perm;
+                })
                 ->addColumn('action', function($qr) {
                     return "<button type='button' data-toggle='modal' data-target='.bs-modal-lg' data-href='".route('tc.staff.edit', $qr->id)."' class='btn btn-success btn-sm'>Edit</button>";
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['action', 'role'])
                 ->toJson();
         }
 
@@ -30,7 +38,8 @@ class StaffController extends Controller
     private function _getColumns()
     {
         return [
-            ['data' => 'name',      'name' => 'name',   'title' => 'Name'],
+            ['data' => 'name',   'name' => 'name',  'title' => 'Name'],
+            ['data' => 'role',   'name' => 'role',  'title' => 'Roles'],
             [
                 'data'           => 'action',
                 'name'           => 'action',

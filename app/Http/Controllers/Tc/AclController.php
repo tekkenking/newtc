@@ -144,8 +144,7 @@ class AclController extends Controller
     private function _getColumns()
     {
         return [
-            ['data' => 'name',      'name' => 'name',   'title' => 'Name'],
-            ['data' => 'role',   'name' => 'name'],
+            ['data' => 'name',   'name' => 'name',  'title' => 'Name'],
             [
                 'data'           => 'action',
                 'name'           => 'action',
