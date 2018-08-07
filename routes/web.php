@@ -11,6 +11,15 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
+});*/
+
+Route::group(['namespace'   =>  'Noauth'], function(){
+
+    Route::get('login', [
+        'as'    => 'login.page',
+        'uses'  =>  'LoginController@index'
+    ]);
+
 });
