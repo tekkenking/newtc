@@ -39,7 +39,7 @@
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
-    <button type="button" class="btn btn-primary" id="addRole">Add</button>
+    <button type="button" class="btn btn-primary ladda-button" data-style="zoom-in" id="addRole"><span class="ladda-label">Add</span></button>
 </div>
 
 <script type="text/javascript">

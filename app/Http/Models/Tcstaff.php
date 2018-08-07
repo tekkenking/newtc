@@ -18,4 +18,9 @@ class Tcstaff extends Model
     {
         return $this->hasMany(Agency::class);
     }
+
+    public function lga()
+    {
+        return $this->belongsTo(Lga::class);
+    }
 }

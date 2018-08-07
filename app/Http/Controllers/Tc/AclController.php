@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Tc;
 
 use App\Http\Repos\PermissionRepo;
 use App\Http\Repos\RoleRepo;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use DataTables;
+use Yajra\DataTables\Facades\DataTables;
 use Yajra\DataTables\Html\Builder;
 
 class AclController extends Controller
@@ -55,7 +54,7 @@ class AclController extends Controller
     public function storeRole(RoleRepo $roleRepo)
     {
         request()->validate([
-            'name'  =>  'required|unique:roles|max:200',
+            'name'          =>  'required|unique:roles|max:200',
             'permissions'   =>  'required'
         ]);
 

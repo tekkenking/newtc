@@ -25,6 +25,7 @@ mix.styles([
     inspDir + 'font-awesome/css/font-awesome.css',
     inspDir + 'css/plugins/dataTables/datatables.min.css',
     inspDir + 'css/plugins/iCheck/custom.css',
+    inspDir + 'css/plugins/ladda/ladda-themeless.min.css',
     inspDir + 'css/animate.css',
     inspDir + 'css/style.css',
     inspDir + 'css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css',
@@ -41,6 +42,9 @@ mix.scripts([
     inspDir + 'js/plugins/dataTables/dataTables.bootstrap4.min.js',
     inspDir + 'js/plugins/iCheck/icheck.min.js',
     inspDir + 'js/inspinia.js',
+    inspDir + 'js/plugins/ladda/spin.min.js',
+    inspDir + 'js/plugins/ladda/ladda.min.js',
+    inspDir + 'js/plugins/ladda/ladda.jquery.min.js',
     rootAssetDir + 'jQuery-Form-Validator/form-validator/jquery.form-validator.min.js',
     buckDir + 'js/ajaxtab.js',
     buckDir + 'js/general.js'

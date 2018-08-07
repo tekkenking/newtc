@@ -1,6 +1,6 @@
 @extends('tc.layouts.master')
 
-@section('title', 'Manage Roles & Permissions');
+@section('title', 'Manage Roles & Permissions')
 
 @section('headertitle', 'Manage Roles & Permissions')
 
@@ -19,9 +19,8 @@
             </div>
 
         </div>
-
-
     </div>
+
 @endsection
 
 @push('scripts')

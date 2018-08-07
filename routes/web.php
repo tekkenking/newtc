@@ -23,3 +23,8 @@ Route::group(['namespace'   =>  'Noauth'], function(){
     ]);
 
 });
+
+Route::get('lgas/state', [
+    'as'    =>  'get.state.lgas',
+    'uses'  =>  'Controller@getStateLgas'
+]);

@@ -1,6 +1,6 @@
 @extends('tc.layouts.master')
 
-@section('title', 'List staffs');
+@section('title', 'List staffs')
 
 @section('headertitle', 'List staff')
 
@@ -11,7 +11,7 @@
            <div class="ibox">
                <div class="ibox-content">
                    <div class="text-right">
-                       <button type="button" class="btn btn-primary btn-sm font-weight-bold" data-toggle='modal' data-target='.bs-modal-nm' data-href='{{route('tc.staff.add')}}'>
+                       <button type="button" class="btn btn-primary btn-sm font-weight-bold" data-toggle='modal' data-target='.bs-modal-lg' data-href='{{route('tc.staff.add')}}'>
                            <i class="fa fa-plus"></i>
                            Add Staff
                        </button>
@@ -19,7 +19,7 @@
 
                    <hr>
                    <div class="table-responsive">
-                       {!! $html->table(['class' => 'table table-bordered'], false) !!}
+                       @include('tc.staff.index_ajax')
                    </div>
                </div>
            </div>

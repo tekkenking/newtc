@@ -1,7 +1,7 @@
-.label-sm {
+.label-sm, .font-sm {
     font-size: 13px !important;
 }
 
-.label-xs {
+.label-xs, .font-xs {
     font-size: 10px !important;
 }

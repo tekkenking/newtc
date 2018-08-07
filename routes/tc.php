@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 Route::group(['namespace'   =>  'Tc', 'prefix' => 'tc'], function(){
 
     Route::get('/', [
