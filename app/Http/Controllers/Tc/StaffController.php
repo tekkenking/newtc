@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Tc;
 
+use App\Http\Repos\RoleRepo;
 use App\Http\Repos\TcstaffRepo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -15,7 +16,7 @@ class StaffController extends Controller
         if (request()->ajax()) {
             return DataTables::of($tcstaffRepo->model->query())
                 ->addColumn('action', function($qr) {
-                    return "<button type='button' data-toggle='modal' data-target='.bs-modal-lg' data-href='".route('acl.role.edit', $qr->id)."' class='btn btn-success btn-sm'>Edit</button>";
+                    return "<button type='button' data-toggle='modal' data-target='.bs-modal-lg' data-href='".route('tc.staff.edit', $qr->id)."' class='btn btn-success btn-sm'>Edit</button>";
                 })
                 ->rawColumns(['action'])
                 ->toJson();
@@ -23,7 +24,7 @@ class StaffController extends Controller
 
         $columns = $this->_getColumns();
         $html = $builder->columns($columns);
-        return view('tc.acl.index', compact('html'));
+        return view('tc.staff.index', compact('html'));
     }
 
     private function _getColumns()
@@ -38,7 +39,14 @@ class StaffController extends Controller
         ];
     }
 
-    public function edit($id)
+    public function edit($id, TcstaffRepo $tcstaffRepo, RoleRepo $roleRepo)
+    {
+        $staff = $tcstaffRepo->find($id);
+        $roles = $roleRepo->all();
+        return view('tc.staff.edit', compact('staff', 'roles'));
+    }
+
+    public function update($id)
     {
 
     }

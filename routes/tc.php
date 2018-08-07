@@ -23,9 +23,14 @@ Route::group(['namespace'   =>  'Tc', 'prefix' => 'tc'], function(){
             'uses'  =>  'StaffController@store'
         ]);
 
-        Route::get('{id}', [
+        Route::get('edit/{id}', [
             'as'    =>  'tc.staff.edit',
             'uses'  =>  'StaffController@edit'
+        ]);
+
+        Route::post('update/{id}', [
+            'as'    =>  'tc.staff.update',
+            'uses'  =>  'StaffController@update'
         ]);
     });
 

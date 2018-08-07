@@ -145,6 +145,7 @@ class AclController extends Controller
     {
         return [
             ['data' => 'name',      'name' => 'name',   'title' => 'Name'],
+            ['data' => 'role',   'name' => 'name'],
             [
                 'data'           => 'action',
                 'name'           => 'action',
