@@ -9,6 +9,7 @@
         <div class="row">
             <div class="col-sm-6">
                 {{csrf_field()}}
+                <input type="hidden" name="usrid" value="{{$staff->user->id}}">
                 <div class="form-group row">
                     <label class="col-lg-2 col-form-label">Name</label>
                     <div class="col-lg-10">

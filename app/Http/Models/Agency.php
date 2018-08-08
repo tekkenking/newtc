@@ -6,6 +6,11 @@ use App\Http\Models\Basemodel as Model;
 
 class Agency extends Model
 {
+    public function bank()
+    {
+        return $this->hasOne(Bank::class);
+    }
+
     public function lga()
     {
         return $this->belongsTo(Lga::class);

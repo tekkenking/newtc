@@ -98,4 +98,11 @@ Route::group(['namespace'   =>  'Tc', 'prefix' => 'tc'], function(){
         });
     });
 
+    Route::group(['prefix' => 'Agencies'], function (){
+        Route::get('/', [
+            'as'    =>  'tc.agency.index',
+            'uses'  =>  'AgencyController@index'
+        ]);
+    });
+
 });

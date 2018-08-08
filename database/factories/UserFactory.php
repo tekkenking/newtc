@@ -32,3 +32,27 @@ $factory->define(App\Http\Models\Tcstaff::class, function (Faker $faker) {
         'address'   =>  $faker->address
     ];
 });
+
+$factory->define(App\Http\Models\Agency::class, function(Faker $faker) {
+
+
+
+    return [
+        //'bank_id'           =>  $faker->numberBetween(1,15),
+        'agencystatus_id'   =>  1,
+        'agencycategory_id' =>  $faker->numberBetween(1,3),
+        'agencymode_id'     =>  $faker->numberBetween(1,3),
+        'lga_id'            =>  $faker->numberBetween(1, 600),
+        'tcstaff_id'        =>  $faker->numberBetween(1,10),
+        'name'              =>  $faker->name(),
+        'email'             =>  $faker->unique()->safeEmail,
+        'phone'             =>  $faker->numerify('080########'),
+        'alt_phone'         =>  $faker->numerify('080########'),
+        'address'           =>  $faker->address,
+        'token'             =>  generate_token(),
+        'bank_account_number'=> $faker->numerify('##########'),
+        'bank_account_name' => $faker->name,
+        'bank_bvn'          => $faker->numerify('#########'),
+        'description'       =>  $faker->sentence
+    ];
+});

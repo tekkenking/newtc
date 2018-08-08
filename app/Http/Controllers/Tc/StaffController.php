@@ -110,12 +110,12 @@ class StaffController extends Controller
         $request = request();
         $assignedRoles = $request->get('roles', []);
 
+        $userid = $request->usrid;
         $request->validate([
             'name'  =>  'required|max:50',
-
-            'username'  =>  ['required', Rule::unique('users')->ignore($id), 'max:50'],
-            'phone'     =>  ['required', Rule::unique('users')->ignore($id)],
-            'email'     =>  ['required', Rule::unique('users')->ignore($id), 'email'],
+            'username'  =>  ['required', Rule::unique('users')->ignore($userid), 'max:50'],
+            'phone'     =>  ['required', Rule::unique('users')->ignore($userid)],
+            'email'     =>  ['required', Rule::unique('users')->ignore($userid), 'email'],
             'lga'       =>  ['required'],
             'address'   =>  ['required']
         ]);
