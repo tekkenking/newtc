@@ -13,3 +13,4 @@ yarn-error.log
 .env
 database_shema_note.txt
 /database/*
+resources/assets/jQuery-Form-Validator/
