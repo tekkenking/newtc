@@ -3,10 +3,53 @@
 namespace App\Http\Controllers\Tc;
 
 use App\Http\Controllers\Controller;
+use App\Http\Repos\AgencyRepo;
+use Yajra\DataTables\Facades\DataTables;
+use Yajra\DataTables\Html\Builder;
+
 
 class AgencyController extends Controller
 {
-    public function index()
+
+    public function index(Builder $builder, AgencyRepo $agencyRepo)
+    {
+        if (request()->ajax()) {
+            return DataTables::of($agencyRepo->model->with('agencystatus')->select('agencies.*'))
+                ->editColumn('agencystatus.name', function($qr) {
+                    $style = ( $qr->agencystatus_id === 1 ) ? 'text-info' : 'text-danger';
+                    return "<span class='font-bold ".$style."'>". $qr->agencystatus->name ."</span>";
+                })
+                ->editColumn('name', function ($qr){
+                    return "<a  href='".route('tc.agency.details.index', $qr->id)."' class='font-bold'>$qr->name</a>";
+                })
+                ->addColumn('action', function($qr) {
+                    return "<button type='button' data-toggle='modal' data-target='.bs-modal-lg' data-href='".route('tc.agency.edit', $qr->id)."' class='btn btn-success btn-xs'>Edit</button>";
+                })
+                ->rawColumns(['action', 'agencystatus.name', 'name'])
+                ->toJson();
+        }
+
+        $columns = $this->_getColumns();
+        $html = $builder->columns($columns);
+        return view('tc.agency.index', compact('html'));
+    }
+
+    public function add()
+    {
+
+    }
+
+    public function store()
+    {
+
+    }
+
+    public function edit()
+    {
+
+    }
+
+    public function update()
     {
 
     }
@@ -15,10 +58,10 @@ class AgencyController extends Controller
     {
         return [
             ['data' => 'name',   'name' => 'name',  'title' => 'Name'],
-            ['data' => 'user.username',   'name' => 'user.username',  'title' => 'UserName'],
-            ['data' => 'user.userstatus.name',   'name' => 'user.userstatus.name',  'title' => 'UserStatus'],
-            ['data' => 'user.is_confirmed',   'name' => 'user.is_confirmed',  'title' => 'Confirmed?'],
-            ['data' => 'role',   'name' => 'role',  'title' => 'Roles'],
+            ['data' => 'phone',   'name' => 'phone',  'title' => 'Phone'],
+            ['data' => 'email',   'name' => 'email',  'title' => 'Email'],
+            ['data' => 'token',   'name' => 'token',  'title' => 'Agent token'],
+            ['data' => 'agencystatus.name',   'name' => 'agencystatus.name',  'title' => 'Status'],
             [
                 'data'           => 'action',
                 'name'           => 'action',
@@ -26,4 +69,29 @@ class AgencyController extends Controller
             ]
         ];
     }
+
+
+    public function detailsIndex($id, AgencyRepo $agencyRepo)
+    {
+        $agency = $agencyRepo->find($id);
+
+        if(request()->ajax()){
+            return view('tc.agency.details.partials.tab_customers', compact('agency'));
+        }
+
+        return view('tc.agency.details.index', compact('agency'));
+    }
+
+    public function detailsPackages($id, AgencyRepo $agencyRepo)
+    {
+        $agency = $agencyRepo->find($id);
+        return view('tc.agency.details.partials.tab_packages', compact('agency'));
+    }
+
+    public function detailsInfo($id, AgencyRepo $agencyRepo)
+    {
+        $agency = $agencyRepo->find($id);
+        return view('tc.agency.details.partials.tab_info', compact('agency'));
+    }
+
 }

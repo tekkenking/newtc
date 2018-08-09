@@ -98,11 +98,50 @@ Route::group(['namespace'   =>  'Tc', 'prefix' => 'tc'], function(){
         });
     });
 
-    Route::group(['prefix' => 'Agencies'], function (){
+    Route::group(['prefix' => 'agency'], function (){
+
+        Route::group(['prefix' => 'details'], function(){
+            Route::get('/{id}', [
+                'as'    =>  'tc.agency.details.index',
+                'uses'  =>  'AgencyController@detailsIndex'
+            ]);
+
+            Route::get('{id}/packages', [
+                'as'    =>  'tc.agency.details.packages',
+                'uses'  =>  'AgencyController@detailsPackages'
+            ]);
+
+            Route::get('{id}/info', [
+                'as'    =>  'tc.agency.details.info',
+                'uses'  =>  'AgencyController@detailsInfo'
+            ]);
+        });
+
         Route::get('/', [
             'as'    =>  'tc.agency.index',
             'uses'  =>  'AgencyController@index'
         ]);
+
+        Route::get('add', [
+            'as'    =>  'tc.agency.add',
+            'uses'  =>  'AgencyController@add'
+        ]);
+
+        Route::post('store', [
+            'as'    =>  'tc.agency.store',
+            'uses'  =>  'AgencyController@store'
+        ]);
+
+        Route::get('edit/{id}', [
+            'as'    =>  'tc.agency.edit',
+            'uses'  =>  'AgencyController@edit'
+        ]);
+
+        Route::post('update', [
+            'as'    =>  'tc.agency.update',
+            'uses'  =>  'AgencyController@update'
+        ]);
+
     });
 
 });

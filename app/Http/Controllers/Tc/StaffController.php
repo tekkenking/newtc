@@ -7,7 +7,7 @@ use App\Http\Repos\StateRepo;
 use App\Http\Repos\TcstaffRepo;
 use App\Http\Controllers\Controller;
 use App\Http\Repos\UserstatusRepo;
-use DataTables;
+use Yajra\DataTables\Facades\DataTables;
 use Yajra\DataTables\Html\Builder;
 
 use Illuminate\Validation\Rule;
