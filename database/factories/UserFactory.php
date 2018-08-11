@@ -20,7 +20,7 @@ $factory->define(App\Http\Models\User::class, function (Faker $faker) {
         'phone' => $faker->numerify('080########'),
         'is_confirmed'  =>  1,
         'userstatus_id' => 1,
-        'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
+        'password' => bcrypt('secret'), // secret
         'remember_token' => str_random(10),
     ];
 });
@@ -34,9 +34,6 @@ $factory->define(App\Http\Models\Tcstaff::class, function (Faker $faker) {
 });
 
 $factory->define(App\Http\Models\Agency::class, function(Faker $faker) {
-
-
-
     return [
         //'bank_id'           =>  $faker->numberBetween(1,15),
         'agencystatus_id'   =>  1,
@@ -54,5 +51,15 @@ $factory->define(App\Http\Models\Agency::class, function(Faker $faker) {
         'bank_account_name' => $faker->name,
         'bank_bvn'          => $faker->numerify('#########'),
         'description'       =>  $faker->sentence
+    ];
+});
+
+$factory->define(App\Http\Models\Agencystaff::class, function (Faker $faker) {
+    return [
+        'agencystatus_id'   =>  1,
+        'lga_id'    =>  $faker->numberBetween(1, 600),
+        'fullname'  =>  $faker->name(),
+        'alt_phone' =>  $faker->numerify('080########'),
+        'token'     =>  generate_token()
     ];
 });

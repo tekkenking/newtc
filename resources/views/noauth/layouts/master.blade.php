@@ -29,8 +29,7 @@
         </div>
     </div>
     <script type="text/javascript" src="{{ asset('js/noath.js') }}"></script>
-    @section('scripts')
-    @show
+    @stack('scripts')
 </body>
 
 </html>

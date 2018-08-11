@@ -12,13 +12,14 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->_systemDefaults();
-        // $this->call(UsersTableSeeder::class);
         $this->call(Tcstaff::class);
         $this->call(Agencies::class);
+        $this->call(Agencystaff::class);
     }
 
     private function _systemDefaults()
     {
+        $this->call(Users::class);
         $this->call(LocationsSeeder::class);
         $this->call(Banks::class);
         $this->call(Userstatuses::class);

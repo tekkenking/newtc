@@ -12,4 +12,10 @@ class Agencystatus extends Model
     {
         return $this->hasMany(Agency::class);
     }
+
+    public function agencstaffs()
+    {
+        return $this->hasMany(Agencystaff::class);
+    }
+
 }

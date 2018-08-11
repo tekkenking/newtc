@@ -18,8 +18,18 @@
 Route::group(['namespace'   =>  'Noauth'], function(){
 
     Route::get('login', [
-        'as'    => 'login.page',
+        'as'    => 'login',
         'uses'  =>  'LoginController@index'
+    ]);
+
+    Route::post('login', [
+        'as'    =>  'post.login.page',
+        'uses'  =>  'LoginController@login'
+    ]);
+
+    Route::get('logout', [
+        'as'    =>  'get.logout.action',
+        'uses'  =>  'LoginController@logout'
     ]);
 
 });

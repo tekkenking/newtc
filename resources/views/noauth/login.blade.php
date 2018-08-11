@@ -19,10 +19,11 @@
                 <div class="ibox-content">
                     <div class="row">
                         <div class="col-sm-6 b-r">
-                            <form role="form">
+                            <form role="form" method="post" action="{{route('post.login.page')}}" id="formLogin">
+                                {{csrf_field()}}
                                 <div class="form-group">
                                     <label>Login ID</label>
-                                    <input name="loginid"
+                                    <input name="usr"
                                            type="text"
                                            placeholder="Enter your login ID"
                                            class="form-control">
@@ -34,12 +35,19 @@
                                            placeholder="Enter your password"
                                            class="form-control">
                                 </div>
-                                <button class="btn btn-sm btn-primary m-t-n-xs" type="submit">
-                                    <strong>Log in</strong>
-                                </button>
-                                <a href="#" class="float-right">
-                                    Forgot Password?
-                                </a>
+
+                                <div class="form-group">
+                                    <button class="btn btn-sm btn-primary m-t-n-xs" type="submit" id="submitLogin" data-style="zoom-in">
+                                        <strong>Log in</strong>
+                                    </button>
+                                    <a href="#" class="float-right">
+                                        Forgot Password?
+                                    </a>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="msg-place"></div>
+                                </div>
                             </form>
                         </div>
 
@@ -55,3 +63,18 @@
     </div>
 
 @endsection
+
+@push('scripts')
+    <script type="text/javascript">
+        $(function () {
+            $('#submitLogin').processRequest({
+                form: '#formLogin',
+                msgPlace: '.msg-place',
+                callBack: function(result) {
+                    if( result.status && result.status !== 'fail')
+                        window.location=result.url
+                }
+            });
+        })
+    </script>
+@endpush

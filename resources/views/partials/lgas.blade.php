@@ -1,5 +1,5 @@
 <select name="lga" class="form-control" data-step="2">
-    <option value="0">Select lga</option>
+    <option value="">Select lga</option>
     @if($lgas->isNotEmpty())
         @foreach($lgas as $lga)
             <option

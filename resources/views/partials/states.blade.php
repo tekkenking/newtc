@@ -1,5 +1,5 @@
 <select name="state_id" class="form-control" data-step="1">
-    <option value="0">Select state</option>
+    <option value="">Select state</option>
     @foreach($states as $state)
         <option
                 value="{{$state->id}}"

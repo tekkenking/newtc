@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,9 +21,11 @@ class AppServiceProvider extends ServiceProvider
 
         Relation::morphMap([
             'customer'    => 'App\Http\Models\Customer',
-            'tcstaff'     => 'App\Http\Models\Tcstaff',
-            'agencystaff' => 'App\Http\Models\Agencystaff'
+            'tc'     => 'App\Http\Models\Tcstaff',
+            'agency' => 'App\Http\Models\Agencystaff'
         ]);
+
+        Blade::component('components.alert', 'alert');
     }
 
     /**

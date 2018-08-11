@@ -17,6 +17,7 @@ let mix = require('laravel-mix');
 const rootAssetDir = 'resources/assets/';
 const inspDir = rootAssetDir + 'insp/';
 const buckDir = rootAssetDir + 'bucketcodes/';
+const niftyDir = rootAssetDir + 'nift/';
 
 
 mix.styles([
@@ -49,4 +50,29 @@ mix.scripts([
     buckDir + 'js/ajaxtab.js',
     buckDir + 'js/general.js'
 ], 'public/js/noath.js');
+
+mix.styles([
+    buckDir + 'css/gfonts.css',
+    niftyDir + 'css/bootstrap.min.css',
+    niftyDir + 'css/nifty.min.css',
+    niftyDir + 'css/themes/type-e/theme-navy.min.css',
+    niftyDir + 'css/demo/nifty-demo-icons.min.css',
+    inspDir  + 'css/plugins/ladda/ladda-themeless.min.css',
+    niftyDir + 'plugins/datatables/media/css/dataTables.bootstrap.css',
+    niftyDir + 'plugins/datatables/extensions/Responsive/css/responsive.dataTables.min.css'
+], 'public/css/nif.css');
+
+mix.scripts([
+    niftyDir + 'js/jquery.min.js',
+    niftyDir + 'js/bootstrap.min.js',
+    niftyDir + 'js/nifty.min.js',
+    niftyDir + 'plugins/datatables/media/js/jquery.dataTables.js',
+    niftyDir + 'plugins/datatables/media/js/dataTables.bootstrap.js',
+    niftyDir + 'plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js',
+    inspDir + 'js/plugins/ladda/spin.min.js',
+    inspDir + 'js/plugins/ladda/ladda.min.js',
+    inspDir + 'js/plugins/ladda/ladda.jquery.min.js',
+    buckDir + 'js/ajaxtab.js',
+    buckDir + 'js/general.js'
+], 'public/js/nif.js');
 

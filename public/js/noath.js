@@ -5040,6 +5040,7 @@ return new RegExp(i).test(b)},errorMessage:"",errorMessageKey:""}),a.formUtils.a
                 reset: false,
                 callBack: false,
                 type: 'post',
+                msgPlace: '.server-msg',
                 params: false
             }, options);
 
@@ -5071,6 +5072,17 @@ return new RegExp(i).test(b)},errorMessage:"",errorMessageKey:""}),a.formUtils.a
                 $this.ladda().ladda('stop');
             };
 
+            let prepareMsgPlace = function($form) {
+                let $msgPlace = $form.find(opt.msgPlace);
+
+                //Does msg place already have alert class else add it
+                if( ! $msgPlace.hasClass('alert') ) {
+                    $msgPlace.addClass('alert');
+                }
+
+                return $msgPlace;
+            };
+
             let sendToServer = function (e) {
                 e.preventDefault();
                 e.stopImmediatePropagation();
@@ -5080,39 +5092,37 @@ return new RegExp(i).test(b)},errorMessage:"",errorMessageKey:""}),a.formUtils.a
                 $(this).off('click', sendToServer);
 
                 let $form = $(opt.form);
-
                 let formdata = $form.serialize();
-
                 if(opt.params) {
                     formdata += '&'+$.param(opt.params);
                 }
-
                 let url = $form.prop('action');
-                let $msgPlace = $form.find('.server-msg');
+                let msgplace =  prepareMsgPlace($form);
+
                 opt.type = $form.prop('method') || opt.type;
                 let req = (opt.type.toLowerCase() === 'post')
                     ? $.post(url, formdata)
                     : $.get(url, opt.params);
 
                 //Clear and hide the server-message
-                $msgPlace.hide().removeClass('alert-danger alert-success');
+                msgplace.hide().removeClass('alert-danger alert-success');
 
                 req.done(function (res) {
-                    if (res.status === 'success') {
-                        $msgPlace.addClass('alert-success');
-                    }
-
-                    $msgPlace.html(res.message).show();
-
-
-                    resetForm($form);
-
-                    callBackx(res);
-
-                    closeModal();
-
                     $this.on('click', sendToServer);
                     stopLadda();
+
+                    if (res.status === 'success') {
+                        msgplace.addClass('alert-success');
+                        closeModal();
+                        resetForm($form);
+                    }
+
+                    if(res.status && res.status === 'fail') {
+                        msgplace.addClass('alert-danger');
+                    }
+
+                    msgplace.html(res.message).show();
+                    callBackx(res);
                 });
 
                 req.fail(function (err) {
@@ -5122,7 +5132,7 @@ return new RegExp(i).test(b)},errorMessage:"",errorMessageKey:""}),a.formUtils.a
                         errmsg += v + '<br/>';
                     });
 
-                    $msgPlace.addClass('alert-danger').html(errmsg).show();
+                    msgplace.addClass('alert-danger').html(errmsg).show();
                     $this.on('click', sendToServer);
                     stopLadda();
                 })
