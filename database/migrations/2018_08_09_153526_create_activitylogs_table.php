@@ -19,6 +19,7 @@ class CreateActivitylogsTable extends Migration
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users');
+            $table->string('section')->comment('Tracology | Agency | Customer');
             $table->string('subject');
             $table->string('url');
             $table->string('method');

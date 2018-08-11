@@ -75,6 +75,9 @@ class LoginController extends Controller
     {
         $request->session()->regenerate();
         $this->clearLoginAttempts($request);
+
+        $this->logActivity('login', 'user logged in');
+
         return response()->json([
             'status' => 'success',
             'message' => 'Authenticated!. Redirecting...',
@@ -95,8 +98,10 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
+        $this->logActivity('logout', 'user logged out');
         $this->guard()->logout();
         $request->session()->invalidate();
         return $this->loggedOut($request) ?: redirect('/login');
     }
+
 }

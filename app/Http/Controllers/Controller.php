@@ -20,4 +20,12 @@ class Controller extends BaseController
         $default_id = 0;
         return view('partials.lgas', compact('lgas', 'default_id'))->render();
     }
+
+    protected function logActivity($action, $subject)
+    {
+        if(auth()->check()) {
+            $type = auth()->user()->profile_type.'_log';
+            $type($action, $subject);
+        }
+    }
 }

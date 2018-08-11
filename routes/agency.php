@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::group(['namespace'   =>  'Agency', 'prefix' => 'agency', 'middleware' => ['auth']], function(){
+Route::group(['namespace'   =>  'Agency', 'prefix' => 'agency', 'middleware' => ['auth', 'section:agency']], function(){
 
     Route::get('/', [
         'as'    =>  'agency.index',
