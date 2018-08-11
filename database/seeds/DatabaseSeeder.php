@@ -27,5 +27,9 @@ class DatabaseSeeder extends Seeder
         $this->call(Agencymodes::class);
         $this->call(Agencystatuses::class);
         $this->call(Agencycategories::class);
+        $this->call(Buildingstatuses::class);
+        $this->call(Buildingmodes::class);
+        $this->call(Buildingtypes::class);
+        $this->call(Buildingstructures::class);
     }
 }
