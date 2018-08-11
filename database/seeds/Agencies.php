@@ -34,6 +34,11 @@ class Agencies extends Seeder
                     ->setHidden([])
                     ->toArray());
 
+            for($v=0; $v < $counter; $v++) {
+                $agency->flatbills()
+                    ->create(factory(App\Http\Models\Flatbill::class)->make()->toArray());
+            }
+
         }
 
     }

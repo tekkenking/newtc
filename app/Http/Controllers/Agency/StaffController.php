@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers\Agency;
 
-use App\Http\Repos\AgencyRepo;
 use App\Http\Repos\AgencystaffRepo;
 use App\Http\Repos\AgencystatusRepo;
 use App\Http\Repos\StateRepo;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rule;
 use Yajra\DataTables\Facades\DataTables;
@@ -14,13 +12,9 @@ use Yajra\DataTables\Html\Builder;
 
 class StaffController extends Controller
 {
-    public function index(Builder $builder, AgencyRepo $agencyRepo)
+    public function index(Builder $builder)
     {
-
         $agency= auth()->user()->profile->agency;
-
-        //dd($agency->agencystaffs()->with('user', 'agencystatus')->get()->toArray());
-
         if (request()->ajax()) {
             $query = $agency->agencystaffs()->with('user', 'agencystatus')->select('agencystaffs.*');
 
@@ -35,9 +29,6 @@ class StaffController extends Controller
                     $style = ( $qr->agencystatus_id === 1 ) ? 'text-success' : 'text-danger';
                     return "<span class='text-bold ".$style."'>". $qr->agencystatus->name ."</span>";
                 })
-                /*->editColumn('fullname', function ($qr){
-                    return "<a  href='".route('tc.agency.details.index', $qr->id)."' class='text-bold text-info'>$qr->fullname</a>";
-                })*/
                 ->addColumn('action', function($qr) {
                     return "<button type='button' data-toggle='modal' data-target='.bs-modal-lg' data-href='".route('agency.staff.edit', $qr->id)."' class='btn btn-mint btn-xs text-bold'>Edit</button>";
                 })

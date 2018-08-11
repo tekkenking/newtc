@@ -1,8 +1,9 @@
 @extends('agency.layouts.master')
 
-@section('title', 'List Agency staff')
+@section('title', 'Manage Bill')
 
-@section('headertitle', "{$agency->name} staffs")
+@section('headertitle', 'Manage Bill')
+
 
 @section('content')
 
@@ -11,9 +12,9 @@
             <div class="ibox">
                 <div class="ibox-content">
                     <div class="text-right">
-                        <button type="button" class="btn btn-danger btn-sm text-bold" data-toggle='modal' data-target='.bs-modal-lg' data-href='{{route('agency.staff.add')}}'>
+                        <button type="button" class="btn btn-danger btn-sm text-bold" data-toggle='modal' data-target='.bs-modal-nm' data-href='{{route('agency.bill.add')}}'>
                             <i class="fa fa-plus"></i>
-                            Add Staff
+                            Add Bill Package
                         </button>
                     </div>
 

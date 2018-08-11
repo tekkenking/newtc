@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->_systemDefaults();
         $this->call(Tcstaff::class);
+        $this->call(Flatbills::class);
         $this->call(Agencies::class);
         $this->call(Agencystaff::class);
     }

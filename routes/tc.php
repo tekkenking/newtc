@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::group(['namespace'   =>  'Tc', 'prefix' => 'tc', 'middleware' => ['auth']], function(){
+Route::group(['namespace'   =>  'Tc', 'prefix' => 'tc', 'middleware' => ['auth', 'section:tc']], function(){
 
     Route::get('/', [
         'as'    => 'dashboard',

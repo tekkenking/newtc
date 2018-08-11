@@ -46,4 +46,9 @@ class Agency extends Model
     {
         return $this->belongsTo(Agencystatus::class);
     }
+
+    public function flatbills()
+    {
+        return $this->hasMany(Flatbill::class);
+    }
 }

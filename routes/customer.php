@@ -2,6 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::group(['namespace'   =>  'Customer', 'prefix' => 'customer', 'middleware' => ['auth']], function(){
+Route::group(['namespace'   =>  'Customer', 'prefix' => 'customer', 'middleware' => ['auth', 'section:customer']], function(){
 
 });

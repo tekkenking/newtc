@@ -44,11 +44,35 @@ Route::group(['namespace'   =>  'Agency', 'prefix' => 'agency', 'middleware' => 
 
     });
 
-    Route::group(['prefix'  =>  'bill'], function (){
+    Route::group(['prefix'  =>  'bill'], function () {
         Route::get('/', [
             'as'    =>  'agency.bill.list',
-            'uses'  =>  'BillController@index'
+            'uses'  =>  'BillController@fixedIndex'
         ]);
+
+        Route::get('add', [
+            'as'    =>  'agency.bill.add',
+            'uses'  =>  'BillController@add'
+        ]);
+
+        Route::post('store', [
+            'as'    =>  'agency.bill.store',
+            'uses'  =>  'BillController@store'
+        ]);
+
+        Route::get('edit/{id}', [
+            'as'    =>  'agency.bill.edit',
+            'uses'  =>  'BillController@edit'
+        ]);
+
+        Route::post('update/{id}', [
+            'as'    =>  'agency.bill.update',
+            'uses'  =>  'BillController@update'
+        ]);
+    });
+
+    Route::group(['prefix' => 'customer'], function () {
+        Route::get
     });
 
 });

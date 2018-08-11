@@ -63,3 +63,13 @@ $factory->define(App\Http\Models\Agencystaff::class, function (Faker $faker) {
         'token'     =>  generate_token()
     ];
 });
+
+$factory->define(\App\Http\Models\Flatbill::class, function(Faker $faker) {
+    return [
+        'agencystatus_id'   =>  random_int(1,2),
+        'name'              =>  $faker->firstName,
+        'amount'            =>  $faker->numerify('###00'),
+        'pending_amount'    =>  0.00,
+        'description'       =>  $faker->sentence
+    ];
+});
