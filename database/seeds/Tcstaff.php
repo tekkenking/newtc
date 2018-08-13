@@ -11,7 +11,7 @@ class Tcstaff extends Seeder
      */
     public function run()
     {
-        DB::table('tcstaff')->truncate();
+        DB::table('tcstaffs')->truncate();
 
         $faker = Faker\Factory::create();
 

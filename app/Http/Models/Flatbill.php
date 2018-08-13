@@ -16,6 +16,11 @@ class Flatbill extends Model
         return $this->belongsTo(Agencystatus::class);
     }
 
+    public function flats()
+    {
+        return $this->belongsToMany(Flat::class);
+    }
+
     public function setAmountAttribute($value)
     {
         $this->attributes['amount'] = unformat_money($value);

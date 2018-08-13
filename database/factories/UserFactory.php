@@ -15,7 +15,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Http\Models\User::class, function (Faker $faker) {
     return [
-        //'name' => $faker->name,
+        'gender_id' => random_int(1,2),
         'email' => $faker->unique()->safeEmail,
         'phone' => $faker->numerify('080########'),
         'is_confirmed'  =>  1,
@@ -69,7 +69,43 @@ $factory->define(\App\Http\Models\Flatbill::class, function(Faker $faker) {
         'agencystatus_id'   =>  random_int(1,2),
         'name'              =>  $faker->firstName,
         'amount'            =>  $faker->numerify('###00'),
-        'pending_amount'    =>  0.00,
+        'pending_amount'    =>  '0.00',
         'description'       =>  $faker->sentence
+    ];
+});
+
+$factory->define(App\Http\Models\Barcode::class, function (Faker $faker) {
+    return [
+        'barcodestatus_id'  => 2,
+        'code'              => generate_token()
+    ];
+});
+
+$factory->define(App\Http\Models\Building::class, function (Faker $faker) {
+    return [
+        'buildingstatus_id' => random_int(1,3),
+        'buildingmode_id' => random_int(1,2),
+        'buildingtype_id' => random_int(1,6),
+        'buildingstructure_id' => random_int(1,3),
+        'lga_id'        => $faker->numberBetween(1, 600),
+        'address'       => $faker->address,
+        'lng'           => $faker->longitude,
+        'lat'           => $faker->latitude
+    ];
+});
+
+$factory->define(App\Http\Models\Flat::class, function (Faker $faker) {
+    return [
+        'name'  =>  $faker->firstName,
+        'rooms' =>  random_int(1,100),
+        'master_accountid' => strtoupper($faker->numerify('TC############'))
+    ];
+});
+
+$factory->define(App\Http\Models\Customer::class, function (Faker $faker) {
+    return [
+        'customertype_id'   =>  random_int(1,2),
+        'fullname'  =>  $faker->name,
+        'alt_phone' => $faker->numerify('080########')
     ];
 });

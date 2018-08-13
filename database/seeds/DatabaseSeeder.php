@@ -12,7 +12,16 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->_systemDefaults();
+        $this->_dataSeed();
+    }
+
+    private function _dataSeed()
+    {
         $this->call(Tcstaff::class);
+        $this->call(Barcodes::class);
+        $this->call(Flats::class);
+        $this->call(Customers::class);
+        $this->call(Buildings::class);
         $this->call(Flatbills::class);
         $this->call(Agencies::class);
         $this->call(Agencystaff::class);
@@ -31,5 +40,8 @@ class DatabaseSeeder extends Seeder
         $this->call(Buildingmodes::class);
         $this->call(Buildingtypes::class);
         $this->call(Buildingstructures::class);
+        $this->call(Barcodestatuses::class);
+        $this->call(Customertypes::class);
+        $this->call(Genders::class);
     }
 }

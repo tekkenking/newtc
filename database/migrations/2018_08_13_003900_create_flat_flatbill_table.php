@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBarcodestatusesTable extends Migration
+class CreateFlatFlatbillTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateBarcodestatusesTable extends Migration
      */
     public function up()
     {
-        Schema::create('barcodestatuses', function (Blueprint $table) {
+        Schema::create('flat_flatbill', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 50)->comment('Options are: active, inactive, damaged');
+            $table->integer('flat_id');
+            $table->integer('flatbill_id');
         });
     }
 
@@ -26,6 +27,6 @@ class CreateBarcodestatusesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('barcodestatuses');
+        Schema::dropIfExists('flat_flatbill');
     }
 }

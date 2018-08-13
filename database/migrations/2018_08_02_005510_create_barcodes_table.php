@@ -15,7 +15,7 @@ class CreateBarcodesTable extends Migration
     {
         Schema::create('barcodes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('building_id')->unsigned();
+            $table->integer('building_id')->unsigned()->nullable();
             $table->foreign('building_id')
                     ->references('id')
                     ->on('buildings');

@@ -61,4 +61,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Userstatus::class);
     }
+
+    public function gender()
+    {
+        return $this->belongsTo(Gender::class);
+    }
 }

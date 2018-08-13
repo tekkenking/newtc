@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTcstaffTable extends Migration
+class CreateGendersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,9 @@ class CreateTcstaffTable extends Migration
      */
     public function up()
     {
-        Schema::create('tcstaff', function (Blueprint $table) {
+        Schema::create('genders', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('lga_id')->unsigned();
-            $table->foreign('lga_id')
-                    ->references('id')
-                    ->on('lgas');
             $table->string('name');
-            $table->string('address');
-            $table->timestamps();
         });
     }
 
@@ -32,6 +26,6 @@ class CreateTcstaffTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tcstaff');
+        Schema::dropIfExists('genders');
     }
 }

@@ -6,9 +6,6 @@ use App\Http\Models\Basemodel as Model;
 
 class Tcstaff extends Model
 {
-    public $redirect = '/tc';
-
-    protected $table = 'tcstaff';
 
     public function user()
     {

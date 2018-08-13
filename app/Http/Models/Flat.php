@@ -22,4 +22,9 @@ class Flat extends Model
         return $this->belongsToMany(Agency::class)
         ->withPivot('accountid', 'is_linked', 'unlinked_date');
     }
+
+    public function flatbills()
+    {
+        return $this->belongsToMany(Flatbill::class);
+    }
 }

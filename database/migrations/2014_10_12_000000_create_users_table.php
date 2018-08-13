@@ -23,6 +23,10 @@ class CreateUsersTable extends Migration
             $table->foreign('profile_id')
                 ->references('id')
                 ->on('profiles');
+            $table->integer('gender_id')->unsigned();
+            $table->foreign('gender_id')
+                ->references('id')
+                ->on('genders');
             $table->string('profile_type');
             $table->string('email')->unique()->nullable();
             $table->string('phone')->unique()->nullable();

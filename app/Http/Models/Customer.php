@@ -6,7 +6,6 @@ use App\Http\Models\Basemodel as Model;
 
 class Customer extends Model
 {
-    public $redirect = '/customer';
 
     public function user()
     {
@@ -22,6 +21,11 @@ class Customer extends Model
     public function flat()
     {
         return $this->flats()->where('is_linked', 1);
+    }
+
+    public function customertype()
+    {
+        return $this->belongsTo(Customertype::class);
     }
 
 }
