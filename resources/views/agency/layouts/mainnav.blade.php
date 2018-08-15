@@ -102,81 +102,31 @@
                             <a href="#" data-original-title="" title="">
                                 <i class="demo-pli-home"></i>
                                 <span class="menu-title">Dashboard</span>
-                                <i class="arrow"></i>
                             </a>
-
-                            <!--Submenu-->
-
-                            <ul class="collapse" aria-expanded="false">
-                                <li><a href="index.html">Dashboard 1</a></li>
-                                <li><a href="dashboard-2.html">Dashboard 2</a></li>
-                                <li><a href="dashboard-3.html">Dashboard 3</a></li>
-
-                            </ul></li>
 
                         <!--Menu list item-->
                         <li>
-                            <a href="#" data-original-title="" title="">
+                            <a href="{{route('agency.staff.list')}}" data-original-title="" title="">
                                 <i class="demo-pli-split-vertical-2"></i>
-                                <span class="menu-title">Layouts</span>
-                                <i class="arrow"></i>
+                                <span class="menu-title">Staff Management</span>
                             </a>
-
-                            <!--Submenu-->
-
-                            <ul class="collapse" aria-expanded="false">
-                                <li><a href="layouts-collapsed-navigation.html">Collapsed Navigation</a></li>
-                                <li><a href="layouts-offcanvas-navigation.html">Off-Canvas Navigation</a></li>
-                                <li><a href="layouts-offcanvas-slide-in-navigation.html">Slide-in Navigation</a></li>
-                                <li><a href="layouts-offcanvas-revealing-navigation.html">Revealing Navigation</a></li>
-                                <li class="list-divider"></li>
-                                <li><a href="layouts-aside-right-side.html">Aside on the right side</a></li>
-                                <li><a href="layouts-aside-left-side.html">Aside on the left side</a></li>
-                                <li><a href="layouts-aside-dark-theme.html">Dark version of aside</a></li>
-                                <li class="list-divider"></li>
-                                <li><a href="layouts-fixed-navbar.html">Fixed Navbar</a></li>
-                                <li><a href="layouts-fixed-footer.html">Fixed Footer</a></li>
-
-                            </ul></li>
 
                         <!--Menu list item-->
                         <li>
-                            <a href="widgets.html" data-original-title="" title="">
+                            <a href="{{route('agency.bill.list')}}" data-original-title="" title="">
                                 <i class="demo-pli-gear"></i>
                                 <span class="menu-title">
-												Widgets
-												<span class="pull-right badge badge-warning">24</span>
-											</span>
+                                    Bill Management
+                                </span>
                             </a>
                         </li>
 
-                        <li class="list-divider"></li>
-
-                        <!--Category name-->
-                        <li class="list-header">Components</li>
-
                         <!--Menu list item-->
                         <li>
-                            <a href="#" data-original-title="" title="">
+                            <a href="{{route('agency.customers.list')}}" data-original-title="" title="">
                                 <i class="demo-pli-boot-2"></i>
-                                <span class="menu-title">UI Elements</span>
-                                <i class="arrow"></i>
+                                <span class="menu-title">Customers</span>
                             </a>
-
-                            <!--Submenu-->
-
-                            <ul class="collapse" aria-expanded="false">
-                                <li><a href="ui-buttons.html">Buttons</a></li>
-                                <li><a href="ui-panels.html">Panels</a></li>
-                                <li><a href="ui-modals.html">Modals</a></li>
-                                <li><a href="ui-progress-bars.html">Progress bars</a></li>
-                                <li><a href="ui-components.html">Components</a></li>
-                                <li><a href="ui-typography.html">Typography</a></li>
-                                <li><a href="ui-list-group.html">List Group</a></li>
-                                <li><a href="ui-tabs-accordions.html">Tabs &amp; Accordions</a></li>
-                                <li><a href="ui-alerts-tooltips.html">Alerts &amp; Tooltips</a></li>
-
-                            </ul></li>
 
                         <!--Menu list item-->
                         <li>

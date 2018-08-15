@@ -20,11 +20,7 @@
                 <div id="content-container">
                     @include('agency.layouts.breadcrum')
                     <div id="page-content">
-                        <div class="panel">
-                            <div class="panel-body">
-                                @yield('content')
-                            </div>
-                        </div>
+                        @yield('content')
                     </div>
                 </div>
                 @include('agency.layouts.mainnav')

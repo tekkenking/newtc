@@ -20,7 +20,7 @@ class Agencystaff extends Seeder
                 'agency_id' => $id
             ])->each(function($qr) {
                 $qr->user()->save(factory(App\Http\Models\User::class)->make([
-                    'can_login' => 0
+                    'can_login' => 1
                 ]));
             });;
         }

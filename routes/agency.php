@@ -72,11 +72,21 @@ Route::group(['namespace'   =>  'Agency', 'prefix' => 'agency', 'middleware' => 
     });
 
     Route::group(['prefix' => 'customer'], function () {
+
         Route::get('/', [
             'as'    =>  'agency.customers.list',
             'uses'  =>  'CustomerController@index'
         ]);
 
+        Route::post('/', [
+            'as'    =>  'post.agency.customer.list',
+            'uses'  =>  'CustomerController@customerFilter'
+        ]);
+
+        Route::get('{id}', [
+            'as'    =>  'agency.customer.detail',
+            'uses'  =>  'CustomerController@detail'
+        ]);
 
     });
 

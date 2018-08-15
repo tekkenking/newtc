@@ -27,4 +27,9 @@ class Flat extends Model
     {
         return $this->belongsToMany(Flatbill::class);
     }
+
+    public function building()
+    {
+        return $this->belongsTo(Building::class);
+    }
 }

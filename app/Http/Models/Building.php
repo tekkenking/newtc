@@ -6,6 +6,11 @@ use App\Http\Models\Basemodel as Model;
 
 class Building extends Model
 {
+    public function lga()
+    {
+        return $this->belongsTo(Lga::class);
+    }
+
     public function flats()
     {
         return $this->hasMany(Flat::class);
