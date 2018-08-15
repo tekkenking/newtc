@@ -86,7 +86,7 @@ Route::group(['namespace'   =>  'Agency', 'prefix' => 'agency', 'middleware' => 
         Route::get('{id}', [
             'as'    =>  'agency.customer.detail',
             'uses'  =>  'CustomerController@detail'
-        ]);
+        ])->middleware( 'only.my.customers');
 
     });
 

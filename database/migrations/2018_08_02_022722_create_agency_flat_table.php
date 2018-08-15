@@ -14,7 +14,7 @@ class CreateAgencyFlatTable extends Migration
     public function up()
     {
         Schema::create('agency_flat', function (Blueprint $table) {
-            $table->increments('id');
+            //$table->increments('id');
             $table->integer('agency_id')->unsigned();
             $table->integer('flat_id')->unsigned();
             $table->string('accountid')->unique();

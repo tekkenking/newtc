@@ -2,7 +2,7 @@
 
 @section('title', $customer->fullname .' details')
 
-@section('headertitle', "Customers list")
+@section('headertitle', $customer->fullname .' details')
 
 @section('content')
 <div class="row">

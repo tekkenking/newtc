@@ -14,9 +14,10 @@ class CreateFlatFlatbillTable extends Migration
     public function up()
     {
         Schema::create('flat_flatbill', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('flat_id');
-            $table->integer('flatbill_id');
+            //$table->increments('id');
+            $table->integer('flat_id')->unsigned();
+            $table->integer('flatbill_id')->unsigned();
+            $table->integer('agent_id')->unsigned();
         });
     }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Agency;
 
 use App\Http\Repos\AgencyRepo;
 use App\Http\Repos\CustomerRepo;
+use Mapper;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\DataTables\DataTables;
@@ -38,12 +39,16 @@ class CustomerController extends Controller
         }
 
         return DataTables::of($dbResult)
+            ->editColumn('name', function($qr){
+                return "<a href='".route('agency.customer.detail', $qr->id)."' class='text-bold text-info'>{$qr->name}</a>";
+            })
+            ->addColumn('bill_package', function($qr){
+                return "<span class=' font-sm'>".format_currency($qr->flatbill[0]->amount)." - ".$qr->flatbill[0]->name."</span>";
+            })
             ->addColumn('accountid', function($qr){
                 return $qr->accountid;
             })
-            ->addColumn('action', function($qr) {
-                return "<a href='".route('agency.customer.detail', $qr->id)."' class='btn btn-mint btn-xs text-bold'>more..</a>";
-            })
+            ->rawColumns(['name', 'bill_package'])
             ->toJson();
     }
 
@@ -51,6 +56,7 @@ class CustomerController extends Controller
     {
         $agencyID = auth()->user()->profile->agency_id;
         $customer = $customerRepo->details($id, $agencyID);
+        Mapper::map($customer->flat[0]->building->lat, $customer->flat[0]->building->lng);
         return view('agency.customer.detail', compact('customer'));
     }
 }

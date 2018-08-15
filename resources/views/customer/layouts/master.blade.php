@@ -15,17 +15,17 @@
 
     <body>
         <div id="container" class="effect aside-float aside-bright mainnav-lg">
-            @include('agency.layouts.header')
+            @include('customer.layouts.header')
             <div class="boxed">
                 <div id="content-container">
-                    @include('agency.layouts.breadcrum')
+                    @include('customer.layouts.breadcrum')
                     <div id="page-content">
                         @yield('content')
                     </div>
                 </div>
-                @include('agency.layouts.mainnav')
+                @include('customer.layouts.mainnav')
             </div>
-            @include('agency.layouts.footer')
+            @include('customer.layouts.footer')
         </div>
 
         <script type="text/javascript" src="{{ asset('js/nif.js') }}"></script>

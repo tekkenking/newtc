@@ -49,8 +49,12 @@ class Agencies extends Seeder
 
             for($k=0; $k < $ranCount; $k++) {
                 $flat = $flatModel->inRandomOrder()->first();
-                $agency->flats()->attach($flat->id, ['accountid' => strtoupper($faker->numerify('FL##########'))]);
-                $flat->flatbills()->attach($agency->flatbills()->inRandomOrder()->first()->id);
+                $agency->flats()->attach($flat->id, [
+                    'accountid' => strtoupper($faker->numerify('FL##########'))
+                ]);
+                $flat->flatbills()->attach($agency->flatbills()->inRandomOrder()->first()->id, [
+                    'agent_id' => $agency->id
+                ]);
             }
 
         }

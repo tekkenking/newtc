@@ -59,7 +59,8 @@ mix.styles([
     niftyDir + 'css/demo/nifty-demo-icons.min.css',
     inspDir  + 'css/plugins/ladda/ladda-themeless.min.css',
     niftyDir + 'plugins/datatables/media/css/dataTables.bootstrap.css',
-    niftyDir + 'plugins/datatables/extensions/Responsive/css/responsive.dataTables.min.css'
+    niftyDir + 'plugins/datatables/extensions/Responsive/css/responsive.dataTables.min.css',
+    buckDir +  'css/general.css'
 ], 'public/css/nif.css');
 
 mix.scripts([

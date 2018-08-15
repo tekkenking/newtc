@@ -6,53 +6,57 @@
 
 @section('content')
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="ibox">
-                <div class="ibox-content">
-                    <div class="text-right">
-                        <button type="button" class="btn btn-danger btn-sm text-bold" data-toggle='modal' data-target='.bs-modal-lg' data-href='{{route('agency.staff.add')}}'>
-                            <i class="fa fa-plus"></i>
-                            Add Staff
-                        </button>
-                    </div>
+    <div class="panel">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="ibox">
+                        <div class="ibox-content">
+                            <div class="text-right">
+                                <button type="button" class="btn btn-danger btn-sm text-bold" data-toggle='modal' data-target='.bs-modal-lg' data-href='{{route('agency.staff.add')}}'>
+                                    <i class="fa fa-plus"></i>
+                                    Add Staff
+                                </button>
+                            </div>
 
-                    <hr>
-                    <div class="table-responsive">
-                        <table id="customer-table" class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Apartment Name</th>
-                                    <th>Customer Name</th>
-                                    <th>Account ID</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                        </table>
+                            <hr>
+                            <div class="table-responsive">
+                                <table id="customer-table" class="table table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th>Apartment Name</th>
+                                        <th>Customer Name</th>
+                                        <th>Account ID</th>
+                                        <th>Bill Package</th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
+            <div class="hidden" id="search-form">
+                <div class="input-group" style="margin-right: 3px;">
+                    <div class="input-group-btn">
+                        <select name="field" class="form-control d-filter-field">
+                            <option value="reset">Filter by Column</option>
+                            <option value="flatname">Apartment Name</option>
+                            <option value="customername">Customer Name</option>
+                            <option value="accountid">Account ID</option>
+                        </select>
+                    </div><!-- /btn-group -->
+                    <input name="query" type="text" class="form-control d-filter-query" aria-label="search" placeholder="Type to search">
+                    <div class="input-group-btn">
+                        <button type="button" class="btn btn-primary d-submit-query" >
+                            Search
+                        </button>
+                    </div><!-- /btn-group -->
+                </div><!-- /input-group -->
             </div>
         </div>
     </div>
 
-    <div class="hidden" id="search-form">
-        <div class="input-group" style="margin-right: 3px;">
-            <div class="input-group-btn">
-                <select name="field" class="form-control d-filter-field">
-                    <option value="reset">Filter by Column</option>
-                    <option value="flatname">Apartment Name</option>
-                    <option value="customername">Customer Name</option>
-                    <option value="accountid">Account ID</option>
-                </select>
-            </div><!-- /btn-group -->
-            <input name="query" type="text" class="form-control d-filter-query" aria-label="search" placeholder="Type to search">
-            <div class="input-group-btn">
-                <button type="button" class="btn btn-primary d-submit-query" >
-                    Search
-                </button>
-            </div><!-- /btn-group -->
-        </div><!-- /input-group -->
-    </div>
 @endsection
 
 @push('scripts')
@@ -75,8 +79,13 @@
                     {data: 'name', name: 'name'},
                     {data: 'customer.0.fullname', name: 'customer.fullname'},
                     {data: 'accountid', name:'accountid', 'seachable':false},
-                    {data: 'action', name:'action'}
-                ]
+                    {data: 'bill_package', name:'bill_package', 'seachable':false}
+                ],
+                columnDefs: [ {
+                    sortable: false,
+                    "class": "index",
+                    targets: 0
+                } ]
             });
 
             //To bring in the other form

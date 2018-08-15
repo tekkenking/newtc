@@ -25,7 +25,13 @@ class Flat extends Model
 
     public function flatbills()
     {
-        return $this->belongsToMany(Flatbill::class);
+        return $this->belongsToMany(Flatbill::class)->withPivot('agent_id');
+    }
+
+    public function flatbill()
+    {
+        $agency_id = auth()->user()->profile->agency_id;
+        return $this->flatbills()->where('agent_id', $agency_id);
     }
 
     public function building()

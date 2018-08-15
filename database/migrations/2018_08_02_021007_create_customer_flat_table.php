@@ -14,7 +14,7 @@ class CreateCustomerFlatTable extends Migration
     public function up()
     {
         Schema::create('customer_flat', function (Blueprint $table) {
-            $table->increments('id');
+            //$table->increments('id');
             $table->integer('customer_id')->unsigned();
             $table->integer('flat_id')->unsigned();
             $table->boolean('is_linked')->default(1)->comment('This field determined the linking and unlinking of customer and flat. 1: means linked, 0: means unlinked');

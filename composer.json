@@ -15,7 +15,8 @@
         "spatie/laravel-fractal": "^5.4",
         "spatie/laravel-permission": "^2.13",
         "tymon/jwt-auth": "1.0.0-rc.2",
-        "yajra/laravel-datatables": "1.0"
+        "yajra/laravel-datatables": "1.0",
+        "cornford/googlmapper": "2.*"
     },
     "require-dev": {
         "filp/whoops": "^2.0",

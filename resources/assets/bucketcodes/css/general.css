@@ -5,3 +5,15 @@
 .label-xs, .font-xs {
     font-size: 10px !important;
 }
+
+.bord-r-white {
+    border-right: 1px solid #fff !important;
+}
+
+.bord-l-white {
+    border-left: 1px solid #fff !important;
+}
+
+.bord-t-white {
+    border-top: 1px solid #fff !important;
+}
