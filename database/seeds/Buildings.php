@@ -15,7 +15,7 @@ class Buildings extends Seeder
 
         $newBarcode = new App\Http\Models\Barcode;
 
-        factory(App\Http\Models\Building::class, 100)->create()
+        factory(App\Http\Models\Building::class, 50)->create()
         ->each(function ($qr) use ($newBarcode) {
 
             $foundBarcode = $newBarcode->inRandomOrder()->whereNull('building_id')->first();
@@ -23,7 +23,7 @@ class Buildings extends Seeder
             $foundBarcode->barcodestatus_id = 1;
             $foundBarcode->save();
 
-            factory(App\Http\Models\Flat::class, 10)->create([
+            factory(App\Http\Models\Flat::class, 5)->create([
                'building_id' => $qr->id
             ])->each(function($qr) {
                 $customer = $qr->customers()

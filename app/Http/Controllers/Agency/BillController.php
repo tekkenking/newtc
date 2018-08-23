@@ -67,7 +67,7 @@ class BillController extends Controller
         $agency = auth()->user()->profile->agency;
         $request->validate([
             'name'      =>  'required|max:50',
-            'amount'    =>  ['required', 'numeric', Rule::unique('flatbills')
+            'amount'    =>  ['required', 'numeric', Rule::unique('Agencybillings')
                 ->where(function($qr) use ($agency){
                 return $qr->where('agency_id', $agency->id);
             })],
@@ -93,7 +93,7 @@ class BillController extends Controller
         $agency = auth()->user()->profile->agency;
         $request->validate([
             'name'      =>  'required|max:50',
-            'amount'    =>  ['required', 'numeric', Rule::unique('flatbills')
+            'amount'    =>  ['required', 'numeric', Rule::unique('Agencybillings')
                 ->where(function($qr) use ($agency){
                     return $qr->where('agency_id', $agency->id);
                 })->ignore($id)],

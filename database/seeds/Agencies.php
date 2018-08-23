@@ -27,6 +27,10 @@ class Agencies extends Seeder
                 'bank_id'   => Bank::inRandomOrder()->first()->id
             ]);
 
+            //We create agency config
+            $agency->agencyconfig()
+                ->create(factory(App\Http\Models\Agencyconfig::class)->make()->toArray());
+
             $staff = $agency->agencystaffs()
                 ->create(factory(App\Http\Models\Agencystaff::class)->make([
                 'is_admin'  =>  1
@@ -40,8 +44,8 @@ class Agencies extends Seeder
                     ->toArray());
 
             for($v=0; $v < $counter; $v++) {
-                $agency->flatbills()
-                    ->create(factory(App\Http\Models\Flatbill::class)->make()->toArray());
+                $agency->agencybillings()
+                    ->create(factory(App\Http\Models\Agencybilling::class)->make()->toArray());
             }
 
             /**Lets register agency flats**/
@@ -49,15 +53,28 @@ class Agencies extends Seeder
 
             for($k=0; $k < $ranCount; $k++) {
                 $flat = $flatModel->inRandomOrder()->first();
-                $agency->flats()->attach($flat->id, [
-                    'accountid' => strtoupper($faker->numerify('FL##########'))
-                ]);
-                $flat->flatbills()->attach($agency->flatbills()->inRandomOrder()->first()->id, [
-                    'agent_id' => $agency->id
-                ]);
-            }
 
+                $flat->agencybillings()
+                    ->attach($agency->agencybillings()->inRandomOrder()->first()->id, [
+                        'agent_id' => $agency->id
+                    ]);
+
+                $agency->flats()->attach($flat->id, [
+                    'accountid'         => strtoupper($faker->numerify('FL##########')),
+                    'agency_balance'    => $this->_prepareDefaultCredit($agency, $flat)
+                ]);
+
+            }
         }
 
+    }
+
+    private function _prepareDefaultCredit($agency, $flat)
+    {
+        $tcagencyoptions = json_decode($agency->agencyconfig->tcagencyoptions);
+
+        return (!$tcagencyoptions->immediatecharge)
+            ? $flat->agencybilling($agency->id)->first()->amount
+            : 0 - $flat->agencybilling($agency->id)->first()->amount;
     }
 }

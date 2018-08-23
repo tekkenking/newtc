@@ -1,0 +1,68 @@
+<?php
+
+use Illuminate\Database\Seeder;
+use App\Http\Models\Agencybillingarrear;
+use App\Http\Models\Paymenthistory;
+
+
+class Paymenthistories extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        DB::table('paymenthistories')->truncate();
+
+        $this->_makePaymentAndKeepHistories();
+
+        /*$allFlats = Flat::all();
+
+        foreach ($allFlats as $flat) {
+            //Lets get all the agencies
+            $totalamount = $flat->agencybillings->sum('amount');
+            //dd($totalamount);
+                //->sum('amount');
+            if($totalamount <= 0) {
+                continue;
+            }
+
+            $customer_id = $flat->customer[0]->id;
+            //dd($customer_id);
+
+            $data = factory(\App\Http\Models\Paymenthistory::class)->make([
+                'customer_id'   =>  $customer_id,
+                'amount'        =>  $totalamount
+            ])->toArray();
+
+            $flat->paymenthistories()->create($data);
+        }*/
+
+        //factory(\App\Http\Models\Paymenthistory::class)->create();
+    }
+
+    private function _makePaymentAndKeepHistories()
+    {
+        $unpaids = Agencybillingarrear::unpaids()->get();
+
+        foreach ($unpaids as $unpaid) {
+            $unpaidAmount = $unpaid->amount - $unpaid->discounted_amount;
+            $flat_id = $unpaid->flat_id;
+            $customer_id = $unpaid->customer_id;
+
+            $data = factory(\App\Http\Models\Paymenthistory::class)->make([
+                'customer_id'   =>  $customer_id,
+                'amount'        =>  $unpaidAmount,
+                'flat_id'       =>  $flat_id
+            ])->toArray();
+
+            $paymenthistory = Paymenthistory::create($data);
+
+            $unpaid->paid_date = now();
+            $unpaid->transaction_ref = $paymenthistory->transaction_ref;
+            $unpaid->save();
+        }
+    }
+}

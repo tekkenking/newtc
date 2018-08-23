@@ -20,9 +20,10 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         Relation::morphMap([
-            'customer'    => 'App\Http\Models\Customer',
-            'tc'     => 'App\Http\Models\Tcstaff',
-            'agency' => 'App\Http\Models\Agencystaff'
+            'customer'      => 'App\Http\Models\Customer',
+            'tc'            => 'App\Http\Models\Tcstaff',
+            'agency'        => 'App\Http\Models\Agencystaff',
+            'governor'      => 'App\Http\Models\Governor'
         ]);
 
         Blade::component('components.alert', 'alert');

@@ -10,6 +10,6 @@ class Bank extends Model
 
     public function agencies()
     {
-        return $this->belongsTo(Agency::class);
+        return $this->hasMany(Agency::class);
     }
 }

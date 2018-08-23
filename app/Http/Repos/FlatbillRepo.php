@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Repos;
-use App\Http\Models\Flatbill as Model;
+use App\Http\Models\Agencybilling as Model;
 
 class FlatbillRepo extends BaseRepo
 {

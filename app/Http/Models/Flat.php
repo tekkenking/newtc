@@ -14,28 +14,44 @@ class Flat extends Model
 
     public function customer()
     {
-        return $this->customers()->where('is_linked', 1);
+        return $this->customers()->wherePivot('is_linked', 1);
     }
 
     public function agencies()
     {
         return $this->belongsToMany(Agency::class)
-        ->withPivot('accountid', 'is_linked', 'unlinked_date');
+        ->withPivot('accountid', 'is_linked', 'unlinked_date', 'agency_balance', 'status');
     }
 
-    public function flatbills()
+    public function agencybillings()
     {
-        return $this->belongsToMany(Flatbill::class)->withPivot('agent_id');
+        return $this->belongsToMany(Agencybilling::class)->withPivot('agent_id');
     }
 
-    public function flatbill()
+    public function agencybilling($agency_id = null)
     {
-        $agency_id = auth()->user()->profile->agency_id;
-        return $this->flatbills()->where('agent_id', $agency_id);
+        $agency_id = ($agency_id) ? $agency_id : auth()->user()->profile->agency_id;
+        return $this->agencybillings()->wherePivot('agent_id', $agency_id);
     }
 
     public function building()
     {
         return $this->belongsTo(Building::class);
     }
+
+    public function servicedhistories()
+    {
+        return $this->hasMany(Servicedhistory::class);
+    }
+
+    public function paymenthistories()
+    {
+        return $this->hasMany(Paymenthistory::class);
+    }
+
+    public function agencybillingarrears()
+    {
+        return $this->hasMany(Agencybillingarrear::class);
+    }
+
 }

@@ -6,9 +6,40 @@ use App\Http\Models\Basemodel as Model;
 
 class Agency extends Model
 {
+
+    public function scopeActive($query)
+    {
+        return $query->where('agencystatus_id', 1);
+    }
+
+    public function agencyconfig()
+    {
+        return $this->hasOne(Agencyconfig::class);
+    }
+
+    public function agencytemplogins()
+    {
+        return $this->hasMany(Agencystafftemplogin::class);
+    }
+
+    public function governors()
+    {
+        return $this->belongsToMany(Governor::class)->withPivot('active');
+    }
+
+    public function currentgovernor()
+    {
+        return $this->governors()->where('active', 1);
+    }
+
+    public function pastgovernors()
+    {
+        return $this->governors()->where('active', 0);
+    }
+
     public function bank()
     {
-        return $this->hasOne(Bank::class);
+        return $this->belongsTo(Bank::class);
     }
 
     public function lga()
@@ -29,7 +60,7 @@ class Agency extends Model
     public function flats()
     {
         return $this->belongsToMany(Flat::class)
-        ->withPivot('accountid', 'is_linked', 'unlinked_date');
+        ->withPivot('accountid', 'is_linked', 'unlinked_date', 'agency_balance', 'status');
     }
 
     public function agencycategory()
@@ -47,8 +78,13 @@ class Agency extends Model
         return $this->belongsTo(Agencystatus::class);
     }
 
-    public function flatbills()
+    public function agencybillings()
     {
-        return $this->hasMany(Flatbill::class);
+        return $this->hasMany(Agencybilling::class);
+    }
+
+    public function servicedhistories()
+    {
+        return $this->hasMany(Servicedhistory::class);
     }
 }

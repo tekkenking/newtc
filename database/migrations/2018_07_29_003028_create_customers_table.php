@@ -21,6 +21,12 @@ class CreateCustomersTable extends Migration
                 ->on('customertypes');
             $table->string('fullname');
             $table->string('alt_phone')->nullable();
+            /**
+             * options json { balancefloatable:true|false }
+            - If balancefloatable is true: it means only charge from my agency balance
+            - If it's false: it means charge from my agency balance and if no or not enought balance, then check to charge from my master balance, before responding with no balance
+             */
+            $table->json('configs')->comment('JSON CONFIG. eg. alert:true');
             $table->timestamps();
         });
     }

@@ -6,6 +6,11 @@ use App\Http\Models\Basemodel as Model;
 
 class Building extends Model
 {
+    public function estate()
+    {
+        return $this->belongsTo(Estate::class);
+    }
+
     public function lga()
     {
         return $this->belongsTo(Lga::class);

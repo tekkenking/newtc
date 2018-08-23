@@ -36,8 +36,10 @@
                     <tr>
                         <td class="text-bold">Bill Package</td>
                         <td>
-                            <span class="label label-warning font-sm">
-                            {{format_currency($customer->flat[0]->flatbill[0]->amount)}} - {{$customer->flat[0]->flatbill[0]->name}}
+                            <span class="badge badge-warning-black font-sm">
+                            {{format_currency($customer->flat[0]->flatbill[0]->amount)}}
+                                -
+                                {{$customer->flat[0]->flatbill[0]->name}}
                             </span>
                         </td>
                     </tr>
@@ -66,7 +68,7 @@
                         <td class="text-bold">LGA</td>
                         <td>
                             {{$customer->flat[0]->building->lga->name}}
-                            <span class="label label-default">{{$customer->flat[0]->building->lga->state->name}}</span>
+                            <span class="badge badge-default font-sm">{{$customer->flat[0]->building->lga->state->name}}</span>
                         </td>
                     </tr>
                     <tr>
@@ -92,7 +94,7 @@
                             }
                         @endphp
                         <td class="text-bold">Building status</td>
-                        <td><span class="label label-{{$color}}">{{$buildingStatus->name}}</span></td>
+                        <td><span class="badge badge-{{$color}} font-sm">{{$buildingStatus->name}}</span></td>
                     </tr>
                 </table>
 

@@ -49,6 +49,7 @@ class CreateAgenciesTable extends Migration
             $table->string('bank_account_name', 100);
             $table->string('bank_bvn',20);
             $table->string('description')->nullable();
+            //$table->boolean('is_scanning_agent')->comment('Is this an agent that scan before serving the flat? 1:true or 0:false');
             $table->timestamps();
         });
     }

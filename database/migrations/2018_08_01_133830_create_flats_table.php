@@ -22,6 +22,7 @@ class CreateFlatsTable extends Migration
             $table->string('name');
             $table->integer('rooms');
             $table->string('master_accountid')->unique();
+            $table->decimal('master_balance',19,2)->default(0.00);
             $table->timestamps();
         });
     }

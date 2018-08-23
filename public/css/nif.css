@@ -677,3 +677,8 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td.child,table.dataTable.dtr-inlin
 .bord-t-white {
     border-top: 1px solid #fff !important;
 }
+
+.badge-warning-black, .label-warning-black {
+    color: #212529 !important;
+    background-color: #ffc107 !important;
+}

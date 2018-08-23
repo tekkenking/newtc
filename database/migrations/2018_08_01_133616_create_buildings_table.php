@@ -35,6 +35,10 @@ class CreateBuildingsTable extends Migration
             $table->foreign('buildingstructure_id')
                     ->references('id')
                     ->on('buildingstructures');
+            $table->integer('estate_id')->unsigned()->nullable();
+            $table->foreign('estate_id')
+                ->references('id')
+                ->on('estates');
 
             $table->decimal('lng', 11, 8)->nullable();
             $table->decimal('lat', 10, 8)->nullable();

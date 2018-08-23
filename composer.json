@@ -27,7 +27,8 @@
     },
     "autoload": {
         "files": [
-            "app/Helpers/general.php"
+            "app/Helpers/general.php",
+            "app/Helpers/dateTime.php"
         ],
         "classmap": [
             "database/seeds",

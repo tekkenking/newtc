@@ -62,10 +62,37 @@ if( ! function_exists('extract_char')){
     }
 }
 
+if( ! function_exists('tt')){
+    function tt($msg, $continue = false){
+        ($continue) ? dump($msg) : dd($msg);
+    }
+}
 
+
+/**
+ * @param int $len
+ * @param array $param
+ *  return string - token;
+ */
 if( ! function_exists('generate_token') ){
-    function generate_token($len = 6) {
-        return strtoupper(str_random($len));
+    function generate_token($len = 8, $param = null) {
+
+        $token = strtoupper(str_random($len));
+        if($param) {
+            $field = 'token';
+            $model = $param;
+            if(is_array($param)) {
+                $model = $param[0];
+                $field = $param[1];
+            }
+
+            do{
+                $token = strtoupper(str_random($len));
+            }while($model->where($field, $token)->first(['id']));
+
+        }
+
+        return $token;
     }
 }
 

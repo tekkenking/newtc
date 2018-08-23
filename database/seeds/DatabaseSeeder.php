@@ -22,9 +22,12 @@ class DatabaseSeeder extends Seeder
         $this->call(Flats::class);
         $this->call(Customers::class);
         $this->call(Buildings::class);
-        $this->call(Flatbills::class);
+        $this->call(Agencybillings::class);
+        $this->call(Agencyconfigs::class);
         $this->call(Agencies::class);
         $this->call(Agencystaff::class);
+        //$this->call(Agencybillingarrears::class);
+        //$this->call(Paymenthistories::class);
     }
 
     private function _systemDefaults()
@@ -43,5 +46,6 @@ class DatabaseSeeder extends Seeder
         $this->call(Barcodestatuses::class);
         $this->call(Customertypes::class);
         $this->call(Genders::class);
+        $this->call(Paymenttypes::class);
     }
 }

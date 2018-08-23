@@ -51,21 +51,15 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes()
     {
-        Route::middleware('web')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/web.php'));
+        $webRoutesArr = [
+          'web', 'tc', 'customer', 'agency', 'governor'
+        ];
 
-        Route::middleware('web')
-            ->namespace($this->namespace)
-            ->group(base_path('routes/tc.php'));
-
-        Route::middleware('web')
-            ->namespace($this->namespace)
-            ->group(base_path('routes/customer.php'));
-
-        Route::middleware('web')
-            ->namespace($this->namespace)
-            ->group(base_path('routes/agency.php'));
+        foreach ($webRoutesArr as $routeFile) {
+            Route::middleware('web')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/'.$routeFile.'.php'));
+        }
     }
 
     /**
