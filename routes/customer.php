@@ -38,4 +38,11 @@ Route::group([
             'uses'  =>  'AgencyController@index'
         ]);
     });
+
+    Route::group(['prefix' => 'report', 'as' => 'report.'], function () {
+        Route::get('', [
+            'as'    =>  'tabs',
+            'uses'  =>  'ReportController@index'
+        ]);
+    });
 });

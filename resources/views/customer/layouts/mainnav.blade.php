@@ -76,7 +76,7 @@
 
                         <!--Menu list item-->
                         <li>
-                            <a href="{{route('customer.agency.show')}}">
+                            <a href="{{route('customer.report.tabs')}}">
                                 <i class="demo-pli-gear"></i>
                                 <span class="menu-title">
                                     Reports
