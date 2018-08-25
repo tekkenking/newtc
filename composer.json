@@ -28,7 +28,9 @@
     "autoload": {
         "files": [
             "app/Helpers/general.php",
-            "app/Helpers/dateTime.php"
+            "app/Helpers/dateTime.php",
+            "app/Helpers/modelQueries.php",
+            "app/Helpers/view.php"
         ],
         "classmap": [
             "database/seeds",

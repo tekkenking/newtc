@@ -16,11 +16,6 @@ class Agencies extends Seeder
         DB::table('agencystaffs')->truncate();
         DB::table('agencies')->truncate();
 
-        $faker = Faker\Factory::create();
-
-        //Init flat model
-        $flatModel = new \App\Http\Models\Flat();
-
         $counter = 10;
         for($i=0; $i <= $counter; $i++) {
             $agency = factory(App\Http\Models\Agency::class)->create([
@@ -49,32 +44,23 @@ class Agencies extends Seeder
             }
 
             /**Lets register agency flats**/
-            $ranCount = random_int(5, 20);
+            /*$ranCount = random_int(5, 20);
 
             for($k=0; $k < $ranCount; $k++) {
                 $flat = $flatModel->inRandomOrder()->first();
-
-                $flat->agencybillings()
-                    ->attach($agency->agencybillings()->inRandomOrder()->first()->id, [
-                        'agent_id' => $agency->id
-                    ]);
 
                 $agency->flats()->attach($flat->id, [
                     'accountid'         => strtoupper($faker->numerify('FL##########')),
                     'agency_balance'    => $this->_prepareDefaultCredit($agency, $flat)
                 ]);
 
-            }
+                $flat->agencybillings()
+                    ->attach($agency->agencybillings()->inRandomOrder()->first()->id, [
+                        'agent_id' => $agency->id
+                    ]);
+
+            }*/
         }
 
-    }
-
-    private function _prepareDefaultCredit($agency, $flat)
-    {
-        $tcagencyoptions = json_decode($agency->agencyconfig->tcagencyoptions);
-
-        return (!$tcagencyoptions->immediatecharge)
-            ? $flat->agencybilling($agency->id)->first()->amount
-            : 0 - $flat->agencybilling($agency->id)->first()->amount;
     }
 }

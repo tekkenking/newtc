@@ -22,3 +22,23 @@ if(! function_exists('diff_in')){
         return $diff;
     }
 }
+
+if(! function_exists('dateformat')) {
+    function dateformat($datetime, $time=false, $format = 'D jS, M y'){
+        if(!$datetime){
+            return 'Never';
+        }
+
+        if($time) {
+            $format .='/h:i A';
+        }
+
+        return icarbon($datetime)->format($format);
+    }
+}
+
+if(! function_exists('datecustom')) {
+    function datecustom($datetime, $format = 'D jS, M y'){
+        return dateformat($datetime, $time=false, $format);
+    }
+}

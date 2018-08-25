@@ -24,7 +24,7 @@ class CreateAgencybillingarrearsTable extends Migration
             $table->integer('agencybilling_id')->unsigned();
             $table->integer('agency_id')->unsigned();
             $table->string('transaction_ref')->nullable();
-            $table->decimal('amount',19,2)->default(0.00);
+            //$table->decimal('amount',19,2)->default(0.00);
             $table->decimal('discounted_amount',19,2)->default(0.00);
             $table->dateTime('paid_date')->nullable()->comment('if null, it means not yet paid, else date and time of pay');
             $table->timestamps();

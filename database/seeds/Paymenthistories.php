@@ -48,7 +48,7 @@ class Paymenthistories extends Seeder
         $unpaids = Agencybillingarrear::unpaids()->get();
 
         foreach ($unpaids as $unpaid) {
-            $unpaidAmount = $unpaid->amount - $unpaid->discounted_amount;
+            $unpaidAmount = $unpaid->agencybilling->amount - $unpaid->discounted_amount;
             $flat_id = $unpaid->flat_id;
             $customer_id = $unpaid->customer_id;
 
@@ -60,9 +60,24 @@ class Paymenthistories extends Seeder
 
             $paymenthistory = Paymenthistory::create($data);
 
-            $unpaid->paid_date = now();
-            $unpaid->transaction_ref = $paymenthistory->transaction_ref;
-            $unpaid->save();
+            $this->_updateAgencyBillingArrear($unpaid, $paymenthistory);
+
+            $this->_updateFlatAgencyBalance($unpaid);
         }
+    }
+
+    private function _updateAgencyBillingArrear($unpaid, $paymenthistory)
+    {
+        $unpaid->paid_date = now();
+        $unpaid->transaction_ref = $paymenthistory->transaction_ref;
+        $unpaid->save();
+    }
+
+    private function _updateFlatAgencyBalance($unpaid)
+    {
+        $unpaid->flat->agencies()
+            ->updateExistingPivot($unpaid->agency_id, [
+                'agency_balance'=> $unpaid->agencybilling->amount
+            ]);
     }
 }

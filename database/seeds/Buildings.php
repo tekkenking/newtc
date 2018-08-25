@@ -11,6 +11,7 @@ class Buildings extends Seeder
      */
     public function run()
     {
+        DB::table('flats')->truncate();
         DB::table('buildings')->truncate();
 
         $newBarcode = new App\Http\Models\Barcode;

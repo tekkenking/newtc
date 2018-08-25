@@ -30,4 +30,9 @@ class Servicedhistory extends Model
     {
         return $this->belongsTo(Servicestatus::class);
     }
+
+    public function servicechargestatus()
+    {
+        return $this->belongsTo(Servicechargestatus::class);
+    }
 }

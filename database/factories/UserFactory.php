@@ -144,7 +144,6 @@ $factory->define(App\Http\Models\Agencyconfig::class, function () {
 
 $factory->define(App\Http\Models\Servicedhistory::class, function (Faker $faker) {
     return [
-        'servicestatus_id'  =>  random_int(1,3),
         'lng'   =>  $faker->longitude,
         'lat'   =>  $faker->latitude,
     ];

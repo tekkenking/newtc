@@ -15,6 +15,7 @@ class Servicestatuses extends Seeder
 
         $data = [
             ['name' => 'success',   'description' => 'Paid'],
+            ['name' => 'grace',   'description'   => 'Grace'],
             ['name' => 'fail',      'description' => 'Not Paid'],
             ['name' => 'paused',    'description' => 'Paused']
         ];

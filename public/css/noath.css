@@ -15585,7 +15585,13 @@ input[type="radio"] .styled:checked + label::after {
     border-top: 1px solid #fff !important;
 }
 
-.badge-warning-black, .label-warning-black {
+.badge-warning-black, .label-warning-black, .btn-warning-black, .bg-warning-black {
     color: #212529 !important;
     background-color: #ffc107 !important;
+}
+
+.badge-white, .label-white, .btn-white {
+    color: #212529 !important;
+    background-color: #ffffff !important;
+    border: 1px solid #cad1c9;
 }

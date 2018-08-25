@@ -13,7 +13,7 @@ class Agencybillingarrears extends Seeder
      */
     public function run()
     {
-        //DB::table('agencybillingarrears')->truncate();
+        DB::table('agencybillingarrears')->truncate();
 
         $flats = $this->_getFlats();
 
@@ -82,7 +82,7 @@ class Agencybillingarrears extends Seeder
             'customer_id'       =>  $flat->customer[0]->id,
             'agencybilling_id'  =>  $currentFlatAgencyBillPackage->id,
             'agency_id'         =>  $agency->id,
-            'amount'            =>  $currentFlatAgencyBillPackage->amount
+            //'amount'            =>  $currentFlatAgencyBillPackage->amount
         ]);
 
         //$this->_alsoUpdateAgencyFlatBalance($flat, $agency, $currentFlatAgencyBillPackage);
