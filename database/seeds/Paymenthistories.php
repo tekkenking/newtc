@@ -16,6 +16,8 @@ class Paymenthistories extends Seeder
     {
         DB::table('paymenthistories')->truncate();
 
+        //dd('stopped');
+
         $this->_makePaymentAndKeepHistories();
 
         /*$allFlats = Flat::all();
@@ -69,7 +71,7 @@ class Paymenthistories extends Seeder
     private function _updateAgencyBillingArrear($unpaid, $paymenthistory)
     {
         $unpaid->paid_date = now();
-        $unpaid->transaction_ref = $paymenthistory->transaction_ref;
+        $unpaid->paymenthistory_id = $paymenthistory->id;
         $unpaid->save();
     }
 

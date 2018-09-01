@@ -17,6 +17,11 @@ class Agency extends Model
         return $this->hasOne(Agencyconfig::class);
     }
 
+    public function agencybillingarrears()
+    {
+        return $this->hasMany(Agencybillingarrear::class);
+    }
+
     public function agencytemplogins()
     {
         return $this->hasMany(Agencystafftemplogin::class);

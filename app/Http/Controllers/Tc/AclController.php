@@ -14,7 +14,7 @@ class AclController extends Controller
     {
         if (request()->ajax() && !request()->tab) {
             return DataTables::of($roleRepo->model->query())
-                ->addIndexColumn()
+                //->addIndexColumn()
                 ->addColumn('permissions', function($qr){
                     $perm = "";
                     foreach($qr->permissions as $permission){

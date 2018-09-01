@@ -37,9 +37,9 @@
                         <td class="text-bold">Bill Package</td>
                         <td>
                             <span class="badge badge-warning-black font-sm">
-                            {{format_currency($customer->flat[0]->flatbill[0]->amount)}}
+                            {{format_currency($customer->flat[0]->agencybilling[0]->amount)}}
                                 -
-                                {{$customer->flat[0]->flatbill[0]->name}}
+                                {{$customer->flat[0]->agencybilling[0]->name}}
                             </span>
                         </td>
                     </tr>

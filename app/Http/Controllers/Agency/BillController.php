@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Agency;
 
+use App\Http\Repos\AgencybillingRepo;
 use App\Http\Repos\AgencystatusRepo;
 use App\Http\Repos\FlatbillRepo;
 use Illuminate\Http\Request;
@@ -12,12 +13,18 @@ use Yajra\DataTables\Html\Builder;
 
 class BillController extends Controller
 {
-    public function fixedIndex(Builder $builder)
+    private function _getAgency()
     {
-        $agency= auth()->user()->profile->agency;
-        if (request()->ajax()) {
-            $query = $agency->flatbills()->with('agencystatus')->select('flatbills.*');
+        return auth()->user()->profile->agency;
+    }
 
+    public function fixedIndex(Builder $builder, AgencybillingRepo $agencybillingRepo)
+    {
+        //$agency= auth()->user()->profile->agency;
+        if (request()->ajax()) {
+            //$query = $agency->agencybillings()->with('agencystatus')->select('flatbills.*');
+            $agency = $this->_getAgency();
+            $query = $agencybillingRepo->getBillings($agency);
             return DataTables::of($query)
                 ->editColumn('agencystatus.name', function($qr) {
                     $style = ( $qr->agencystatus_id === 1 ) ? 'text-success' : 'text-danger';

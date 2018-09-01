@@ -15,6 +15,8 @@ class Agencybillingarrears extends Seeder
     {
         DB::table('agencybillingarrears')->truncate();
 
+        //dd('stopped');
+
         $flats = $this->_getFlats();
 
         $this->_getEachFlatAgencies($flats);

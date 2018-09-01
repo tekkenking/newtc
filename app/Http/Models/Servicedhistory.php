@@ -35,4 +35,10 @@ class Servicedhistory extends Model
     {
         return $this->belongsTo(Servicechargestatus::class);
     }
+
+    public function scopeSuccess($query)
+    {
+        return $query->where('servicestatus_id', 1);
+    }
+
 }

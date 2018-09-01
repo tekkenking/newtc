@@ -20,4 +20,14 @@ class Paymenthistory extends Model
     {
         return $this->belongsTo(Paymenttype::class);
     }
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
+    }
+
+    public function agencybillingarrear()
+    {
+        return $this->hasOne(Agencybillingarrear::class);
+    }
 }

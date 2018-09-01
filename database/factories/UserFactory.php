@@ -116,7 +116,7 @@ $factory->define(App\Http\Models\Paymenthistory::class, function () {
     return [
         'paymenttype_id'    =>  random_int(1,3),
         'transaction_ref'   => generate_token(15, [new \App\Http\Models\Paymenthistory(), 'transaction_ref']),
-        'status'            =>  random_int(0,1),
+        'status_id'            =>  random_int(1,2),
     ];
 });
 

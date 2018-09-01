@@ -42,6 +42,7 @@ class CreateServicedhistoriesTable extends Migration
             $table->decimal('amount',19,2)->default(0.00);
             $table->decimal('lng', 11, 8)->nullable();
             $table->decimal('lat', 10, 8)->nullable();
+            //$table->timestamp('nextchargedate')->nullable();
             $table->timestamps();
         });
     }

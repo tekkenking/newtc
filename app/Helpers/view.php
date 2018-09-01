@@ -41,12 +41,18 @@ if(!function_exists('customer_agency_color')) {
     if(!function_exists('billOrBalance')) {
         function billOrBalance($flatModel, $agencyModel){
             $arrears = qr_getFlatAgencyBillingArrear($flatModel, $agencyModel);
-            $lastServicedDate = qr_lastAgencyServiceDate($flatModel, $agencyModel);
+            $lastServicedDate = qr_lastAgencySuccessServiceDate($flatModel, $agencyModel);
             $now = sqldate();
-            $diffDays = diff_in('days', $lastServicedDate, $now);
+            //dump($lastServicedDate);
+            $diffDays = ($lastServicedDate)
+                ? diff_in('days', $lastServicedDate->created_at, $now)
+                : 0;
             $dangerDays = 10;
             $circleDays = qr_getAgencyServicechargedays($agencyModel);
-            if ($arrears && ($circleDays - $diffDays) <= $dangerDays) {
+            //if($arrears) dump($arrears->toArray());
+            //dump(($circleDays - $diffDays));
+            //dump($lastServicedDate);
+            if (!$lastServicedDate || ($arrears && ($circleDays - $diffDays) <= $dangerDays)) {
                return $arrears;
             }
 

@@ -12,32 +12,33 @@
             <!--Nav Tabs-->
             <ul class="nav nav-tabs">
                 <li class="active">
-                    <a data-toggle="tab" href="#demo-lft-tab-1">Home <span class="badge badge-purple">27</span></a>
+                    <a data-toggle="tab" href="#servicehistory" data-url="{{route('customer.report.tabs')}}?tab=true">Serviced History</a>
                 </li>
                 <li>
-                    <a data-toggle="tab" href="#demo-lft-tab-2">Profile</a>
+                    <a data-toggle="tab" href="#paymenthistory" data-url="{{route('customer.report.paymenthistory')}}">Payment history</a>
                 </li>
                 <li>
-                    <a data-toggle="tab" href="#demo-lft-tab-3">Setting</a>
+                    <a data-toggle="tab" href="#billhistory" data-url="{{route('customer.report.billhistory')}}">Bill History</a>
                 </li>
             </ul>
 
             <!--Tabs Content-->
             <div class="tab-content">
-                <div id="demo-lft-tab-1" class="tab-pane fade active in">
-                    <p class="text-main text-semibold">First Tab Content</p>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
-                </div>
-                <div id="demo-lft-tab-2" class="tab-pane fade">
-                    <p class="text-main text-semibold">Second Tab Content</p>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
-                </div>
-                <div id="demo-lft-tab-3" class="tab-pane fade">
-                    <p class="text-main text-semibold">Third Tab Content</p>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+                <div id="servicehistory" class="tab-pane fade active in">
+                    <div class="panel-body">
+                        @include('customer.report.servicedhistories')
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
+
+@push('scripts')
+    <script type="text/javascript">
+        $(function(){
+            $('[data-toggle="tab"]').ajaxtab();
+        })
+    </script>
+@endpush

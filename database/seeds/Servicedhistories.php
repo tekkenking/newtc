@@ -12,7 +12,8 @@ class Servicedhistories extends Seeder
      */
     public function run()
     {
-        DB::table('servicedhistories')->truncate();
+        //DB::table('servicedhistories')->truncate();
+        //dd('stopped');
 
         //Lets get agencies to get theres staff to service the flats
         $agencies = Agency::active()->get(['id', 'agencystatus_id']);

@@ -18,6 +18,17 @@ if(! function_exists('qr_lastAgencyServiceDate') ){
     }
 }
 
+//This would fetch the last date an agency serviced this flat
+if(! function_exists('qr_lastAgencySuccessServiceDate') ){
+    function qr_lastAgencySuccessServiceDate($flat, $agency){
+        return $flat->servicedhistories()
+            ->where('agency_id', $agency->id)
+            ->success()
+            ->latest()
+            ->first();
+    }
+}
+
 if(! function_exists('qr_getAgencyConfig') ){
     function qr_getAgencyConfig($agency, $option = null){
         $config = json_decode($agency->agencyconfig->tcagencyoptions);

@@ -16,7 +16,7 @@ class CustomerRepo extends BaseRepo
             ->with(['user', 'flat' => function($flt) use ($agencyID) {
                 $flt->with(['agencies' => function($ag) use ($agencyID) {
                     $ag->where('id', $agencyID);
-                }, 'building.lga.state', 'building.barcode', 'flatbill']);
+                }, 'building.lga.state', 'building.barcode', 'agencybilling']);
             }])->first();
 
         //dd($detail->toArray());

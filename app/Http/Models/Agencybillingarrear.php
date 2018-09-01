@@ -16,6 +16,11 @@ class Agencybillingarrear extends Model
         return $this->belongsTo(Agencybilling::class);
     }
 
+    public function agency()
+    {
+        return $this->belongsTo(Agency::class);
+    }
+
     public function scopeUnpaids($query)
     {
         return $query->whereNull('paid_date');
@@ -24,5 +29,10 @@ class Agencybillingarrear extends Model
     public function scopePaids($query)
     {
         return $query->whereNotNull('paid_date');
+    }
+
+    public function paymenthistory()
+    {
+        return $this->belongsTo(Paymenthistory::class);
     }
 }

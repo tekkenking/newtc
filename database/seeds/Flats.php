@@ -31,10 +31,14 @@ class Flats extends Seeder
                     'agency_balance'    => $this->_prepareDefaultCredit($agency, $flat)
                 ]);
 
+
+                $billingID = $agency->agencybillings()->inRandomOrder()->first()->id;
                 $flat->agencybillings()
-                    ->attach($agency->agencybillings()->inRandomOrder()->first()->id, [
+                    ->attach($billingID, [
                         'agent_id' => $agency->id
                     ]);
+
+                $this->_generateFirstBill($flat, $agency, $billingID);
             }
 
         }
@@ -48,5 +52,15 @@ class Flats extends Seeder
             ? $flat->agencybilling($agency->id)->first()->amount
             : 0 - $flat->agencybilling($agency->id)->first()->amount;*/
         return 0.00;
+    }
+
+    private function _generateFirstBill($flat, $agency, $billingID)
+    {
+        $flat->agencybillingarrears()->create([
+            'customer_id'       =>  $flat->customer[0]->id,
+            'agencybilling_id'  =>  $billingID,
+            'agency_id'         =>  $agency->id,
+            //'amount'            =>  $currentFlatAgencyBillPackage->amount
+        ]);
     }
 }

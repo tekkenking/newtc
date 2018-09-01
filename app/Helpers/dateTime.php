@@ -30,7 +30,7 @@ if(! function_exists('dateformat')) {
         }
 
         if($time) {
-            $format .='/h:i A';
+            $format .=' - h:i A';
         }
 
         return icarbon($datetime)->format($format);

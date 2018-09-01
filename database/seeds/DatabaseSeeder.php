@@ -49,5 +49,6 @@ class DatabaseSeeder extends Seeder
         $this->call(Genders::class);
         $this->call(Paymenttypes::class);
         $this->call(Servicestatuses::class);
+        $this->call(Statuses::class);
     }
 }

@@ -15,6 +15,10 @@ class CreatePaymenthistoriesTable extends Migration
     {
         Schema::create('Paymenthistories', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('status_id')->unsigned();
+            $table->foreign('status_id')
+                ->references('id')
+                ->on('statuses');
             $table->integer('flat_id')->unsigned();
             $table->foreign('flat_id')
                 ->references('id')
@@ -29,7 +33,6 @@ class CreatePaymenthistoriesTable extends Migration
                 ->on('paymenttypes');
             $table->string('transaction_ref')->nullable();
             $table->decimal('amount',19,2)->default(0.00);
-            $table->boolean('status')->comment('status is either 1:success | 0:fail');
             $table->timestamps();
         });
     }

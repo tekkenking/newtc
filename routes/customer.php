@@ -44,5 +44,15 @@ Route::group([
             'as'    =>  'tabs',
             'uses'  =>  'ReportController@index'
         ]);
+
+        Route::get('paymenthistory', [
+            'as'    =>  'paymenthistory',
+            'uses'  =>  'ReportController@paymenthistory'
+        ]);
+
+        Route::get('billhistory', [
+            'as'    =>  'billhistory',
+            'uses'  =>  'ReportController@billhistory'
+        ]);
     });
 });
