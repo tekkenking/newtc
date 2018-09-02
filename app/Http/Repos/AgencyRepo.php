@@ -14,7 +14,7 @@ class AgencyRepo extends BaseRepo
     {
         $agency = $this->find($agencyID);
         return $agency->flats()
-            ->with('customer', 'building');
+            ->with('customer', 'building.lga.state');
     }
 
     public function customers($agencyID)
@@ -31,14 +31,30 @@ class AgencyRepo extends BaseRepo
     public function filterFlatName($agencyID, $query)
     {
         return $this->_common($agencyID)
-            ->where('name', $query);
+            ->where('name', 'like', '%'. trim($query) . '%');
     }
 
     public function filterCustomerName($agencyID, $query)
     {
         return $this->_common($agencyID)
             ->whereHas('customer', function($qr) use ($query) {
-               $qr->where('fullname', trim($query));
+               $qr->where('fullname', 'like', '%'. trim($query) . '%');
+            });
+    }
+
+    public function filterStateName($agencyID, $query)
+    {
+        return $this->_common($agencyID)
+            ->whereHas('building.lga.state', function($qr) use ($query) {
+               $qr->where('name', 'like', '%'. trim($query) . '%');
+            });
+    }
+
+    public function filterLgaName($agencyID, $query)
+    {
+        return $this->_common($agencyID)
+            ->whereHas('building.lga', function($qr) use ($query) {
+                $qr->where('name', 'like', '%'. trim($query) . '%');
             });
     }
 

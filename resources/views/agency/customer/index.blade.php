@@ -28,6 +28,8 @@
                                         <th>Customer Name</th>
                                         <th>Account ID</th>
                                         <th>Bill Package</th>
+                                        <th>State</th>
+                                        <th>LGA</th>
                                     </tr>
                                     </thead>
                                 </table>
@@ -44,6 +46,8 @@
                             <option value="flatname">Apartment Name</option>
                             <option value="customername">Customer Name</option>
                             <option value="accountid">Account ID</option>
+                            <option value="state">State</option>
+                            <option value="lga">LGA</option>
                         </select>
                     </div><!-- /btn-group -->
                     <input name="query" type="text" class="form-control d-filter-query" aria-label="search" placeholder="Type to search">
@@ -79,7 +83,9 @@
                     {data: 'name', name: 'name'},
                     {data: 'customer.0.fullname', name: 'customer.fullname'},
                     {data: 'accountid', name:'accountid', 'seachable':false},
-                    {data: 'bill_package', name:'bill_package', 'seachable':false}
+                    {data: 'bill_package', name:'bill_package', 'seachable':false},
+                    {data: 'building.lga.state.name', name:'building.lga.state.name'},
+                    {data: 'building.lga.name', name:'building.lga.name'}
                 ],
                 columnDefs: [ {
                     sortable: false,

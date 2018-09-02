@@ -49,6 +49,14 @@ class CustomerController extends Controller
             $dbResult = $agencyRepo->filterCustomerName($agencyID, $request->qquery);
         }
 
+        elseif($request->field === 'state') {
+            $dbResult = $agencyRepo->filterStateName($agencyID, $request->qquery);
+        }
+
+        elseif($request->field === 'lga') {
+            $dbResult = $agencyRepo->filterLgaName($agencyID, $request->qquery);
+        }
+
         return DataTables::of($dbResult)
             ->editColumn('name', function($qr){
                 return "<a href='".route('agency.customer.detail', $qr->id)."' class='text-bold text-info'>{$qr->name}</a>";
