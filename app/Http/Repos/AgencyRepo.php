@@ -2,7 +2,6 @@
 
 namespace App\Http\Repos;
 use App\Http\Models\Agency as Model;
-use App\Http\Models\Customer;
 
 class AgencyRepo extends BaseRepo
 {
@@ -43,5 +42,14 @@ class AgencyRepo extends BaseRepo
             });
     }
 
-
+    public function serviceCustomerHistory($agencyid, $flatid)
+    {
+        return $this->find($agencyid)
+            ->servicedhistories()
+            ->where('flat_id', $flatid)
+            ->with(['agencystaff' => function($qr) {
+                $qr->select('id', 'fullname');
+            }, 'servicestatus'])
+            ->select('servicedhistories.*');
+    }
 }

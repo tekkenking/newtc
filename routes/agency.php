@@ -73,20 +73,29 @@ Route::group(['namespace'   =>  'Agency', 'prefix' => 'agency', 'middleware' => 
 
     Route::group(['prefix' => 'customer'], function () {
 
-        Route::get('/', [
+        Route::any('/', [
             'as'    =>  'agency.customers.list',
             'uses'  =>  'CustomerController@index'
         ]);
 
-        Route::post('/', [
-            'as'    =>  'post.agency.customer.list',
-            'uses'  =>  'CustomerController@customerFilter'
-        ]);
+        Route::group(['prefix' => '{flatid}', 'middlware' => ['only.my.customers']], function (){
 
-        Route::get('{id}', [
-            'as'    =>  'agency.customer.detail',
-            'uses'  =>  'CustomerController@detail'
-        ])->middleware( 'only.my.customers');
+            Route::get('', [
+                'as'    =>  'agency.customer.detail',
+                'uses'  =>  'CustomerController@detail'
+            ]);
+
+            Route::get('servicehistory', [
+                'as'    =>  'agency.customer.servicehistory',
+                'uses'  =>  'CustomerController@serviceHistory'
+            ]);
+
+            Route::get('paymenthistory', [
+                'as'    =>  'agency.customer.paymenthistory',
+                'uses'  =>  'CustomerController@paymentHistory'
+            ]);
+
+        });
 
     });
 

@@ -16,4 +16,5 @@ class ServicedhistoryRepo extends BaseRepo
             ->with('agency', 'servicestatus')
             ->select('servicedhistories.*');
     }
+
 }

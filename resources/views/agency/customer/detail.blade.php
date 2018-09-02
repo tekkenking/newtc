@@ -12,23 +12,30 @@
             <!--Nav Tabs-->
             <ul class="nav nav-tabs">
                 <li class="active">
-                    <a data-toggle="tab" href="#contact-info">Contact Info</a>
+                    <a data-toggle="tab" href="#contact-info" data-url="{{route('agency.customer.detail', $customer->id)}}?tab=true">Contact Info</a>
                 </li>
                 <li>
-                    <a data-toggle="tab" href="#activity-log">Activity log</a>
-                </li>
-                <li>
-                    <a data-toggle="tab" href="#payment-history">Payment History</a>
+                    <a data-toggle="tab" href="#activity-log" data-url="{{route('agency.customer.servicehistory', $customer->id)}}">Service History</a>
                 </li>
             </ul>
 
             <!--Tabs Content-->
             <div class="tab-content">
-                <div id="demo-lft-tab-1" class="tab-pane fade active in">
-                    @include('agency.customer.tabs.contactinfo')
+                <div id="contact-info" class="tab-pane fade active in">
+                    <div class="panel-body">
+                        @include('agency.customer.tabs.contactinfo')
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
+
+@push('scripts')
+    <script type="text/javascript">
+        $(function(){
+            $('[data-toggle="tab"]').ajaxtab();
+        })
+    </script>
+@endpush
