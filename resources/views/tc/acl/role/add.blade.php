@@ -5,7 +5,7 @@
     <h4 class="modal-title" id="exampleModalLabel">Add Role</h4>
 </div>
 <div class="modal-body">
-    <form id="storeRole" method="post" action="{{route('acl.role.store')}}">
+    <form id="storeRole" method="post" action="{{route('tc.acl.role.store')}}">
         <div class="row">
             <div class="col-sm-12">
                 {{csrf_field()}}
@@ -48,7 +48,7 @@
             form: '#storeRole',
             reset: true,
             callBack: function(result) {
-                $.get("{{route('acl.role.index')}}?tab=true", function(data) {
+                $.get("{{route('tc.acl.role.index')}}?tab=true", function(data) {
                     $('.tab-content .tab-pane.active.show .panel-body').html(data);
                 })
             }

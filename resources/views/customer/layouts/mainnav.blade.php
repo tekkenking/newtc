@@ -41,57 +41,31 @@
 
                     </div>
 
-
                     <ul id="mainnav-menu" class="list-group">
 
                         <!--Category name-->
                         <li class="list-header">Navigation</li>
 
-                        <!--Menu list item-->
-                        <li>
-                            <a href="{{route('customer.dashboard')}}">
-                                <i class="demo-pli-home"></i>
-                                    <span class="menu-title">Dashboard</span>
-                            </a>
-                        </li>
-
-                        <!--Menu list item-->
-                        <li>
-                            <a href="{{route('customer.profile.show')}}">
-                                <i class="demo-pli-split-vertical-2"></i>
-                                <span class="menu-title">Profile</span>
-                            </a>
-                        </li>
-
-                        <!--Menu list item-->
-                        <li>
-                            <a href="{{route('customer.agency.show')}}">
-                                <i class="demo-pli-gear"></i>
-                                <span class="menu-title">
-                                    {{str_plural('Agency', $agenciescount)}}
-                                    <span class="pull-right badge badge-warning-black">{{$agenciescount}}</span>
+                        @foreach(config_get_menu(customer_str()) as $menu)
+                            @php
+                                $link = prepare_href($menu);
+                            @endphp
+                            <li class="{{is_menu_active($link)}}">
+                                <a href="{{$link}}">
+                                    @if(isset($menu['icon']))
+                                        <i class="{{$menu['icon']}}"></i>
+                                    @endif
+                                    <span class="menu-title">
+                                    {{str_plural($menu['name'], $agenciescount)}}
+                                        @if(isset($menu['badge']))
+                                            <span class="pull-right badge badge-warning-black">
+                                            {{$agenciescount}}
+                                        </span>
+                                        @endif
                                 </span>
-                            </a>
-                        </li>
-
-                        <!--Menu list item-->
-                        <li>
-                            <a href="{{route('customer.report.tabs')}}">
-                                <i class="demo-pli-gear"></i>
-                                <span class="menu-title">
-                                    Reports
-                                </span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="{{route('get.logout.action')}}">
-                                <i class="demo-pli-unlock icon-lg icon-fw"></i>
-                                <span class="menu-title">
-                                    Logout
-                                </span>
-                            </a>
-                        </li>
+                                </a>
+                            </li>
+                    @endforeach
 
                     </ul>
 

@@ -148,3 +148,9 @@ $factory->define(App\Http\Models\Servicedhistory::class, function (Faker $faker)
         'lat'   =>  $faker->latitude,
     ];
 });
+
+$factory->define(App\Http\Models\Tcrootuser::class, function (Faker $faker) {
+    return [
+        'name'      =>  $faker->name()
+    ];
+});

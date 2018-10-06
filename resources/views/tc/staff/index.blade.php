@@ -18,7 +18,7 @@
                    </div>
 
                    <hr>
-                   <div class="table-responsive">
+                   <div class="table-responsive" id="ajax-reload-target">
                        @include('tc.staff.index_ajax')
                    </div>
                </div>

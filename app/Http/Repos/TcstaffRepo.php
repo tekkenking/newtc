@@ -55,4 +55,11 @@ class TcstaffRepo extends BaseRepo
         //Then we return the profile object
         return $profile;
     }
+
+    public function getList()
+    {
+        return $this->model
+            ->with('user.userstatus')
+            ->select('tcstaffs.*');
+    }
 }

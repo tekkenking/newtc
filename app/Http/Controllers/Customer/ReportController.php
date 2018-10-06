@@ -27,10 +27,7 @@ class ReportController extends Controller
                 ->editColumn('created_at', function($qr) {
                     return dateformat($qr->created_at, true);
                 })
-                ->rawColumns(['amount', 'servicestatus.name', 'created_at', 'action'])
-                ->addColumn('action', function($qr) {
-                    return "<button type='button' data-toggle='modal' data-target='.bs-modal-lg' data-href='".route('acl.role.edit', $qr->id)."' class='btn btn-info btn-xs text-bold'>Detail</button>";
-                })
+                ->rawColumns(['amount', 'servicestatus.name', 'created_at'])
                 ->toJson();
         }
 
@@ -49,12 +46,7 @@ class ReportController extends Controller
             ['data' => 'agency.name',   'name' => 'agency.name',  'title' => 'Agency Name'],
             ['data' => 'amount',   'name' => 'amount',  'title' => 'Charged'],
             ['data' => 'servicestatus.name',   'name' => 'servicestatus.name',  'title' => 'Status'],
-            ['data' => 'created_at',   'name' => 'created_at',  'title' => 'Date'],
-            [
-                'data'           => 'action',
-                'name'           => 'action',
-                'title'          => 'Action'
-            ]
+            ['data' => 'created_at',   'name' => 'created_at',  'title' => 'Date']
         ];
     }
 
@@ -71,10 +63,7 @@ class ReportController extends Controller
                 ->editColumn('status.name', function($qr) {
                     return "<span class='text-bold ".$qr->status->color()."'>{$qr->status->name}</span>";
                 })
-                ->addColumn('action', function($qr) {
-                    return "<button type='button' data-toggle='modal' data-target='.bs-modal-lg' data-href='".route('acl.role.edit', $qr->id)."' class='btn btn-info btn-xs text-bold'>Detail</button>";
-                })
-                ->rawColumns(['amount', 'status.name', 'created_at', 'action'])
+                ->rawColumns(['amount', 'status.name', 'created_at'])
                 ->toJson();
         }
         $builder->ajax(route('customer.report.paymenthistory'));
@@ -89,12 +78,7 @@ class ReportController extends Controller
             ['data' => 'transaction_ref',   'name' => 'transaction_ref',  'title' => 'Transaction Ref'],
             ['data' => 'amount',   'name' => 'amount',  'title' => 'Amount'],
             ['data' => 'paymenttype.name',   'name' => 'paymenttype.name',  'title' => 'Channel'],
-            ['data' => 'created_at',   'name' => 'created_at',  'title' => 'Date'],
-            [
-                'data'           => 'action',
-                'name'           => 'action',
-                'title'          => 'Action'
-            ]
+            ['data' => 'created_at',   'name' => 'created_at',  'title' => 'Date']
         ];
     }
 
@@ -120,10 +104,7 @@ class ReportController extends Controller
                     }
                     return "<span class='text-bold ".$qr->paymenthistory->status->color()."'>{$qr->paymenthistory->status->name}</span>";
                 })
-                ->addColumn('action', function($qr) {
-                    return "<button type='button' data-toggle='modal' data-target='.bs-modal-lg' data-href='".route('acl.role.edit', $qr->id)."' class='btn btn-info btn-xs text-bold'>Detail</button>";
-                })
-                ->rawColumns(['agencybilling.amount', 'paid_date', 'created_at', 'discounted_amount', 'action', 'paymenthistory.status.name'])
+                ->rawColumns(['agencybilling.amount', 'paid_date', 'created_at', 'discounted_amount', 'paymenthistory.status.name'])
                 ->toJson();
         }
 
@@ -140,12 +121,7 @@ class ReportController extends Controller
             ['data' => 'paymenthistory.status.name',   'name' => 'paymenthistory.status.name',  'title' => 'Payment status'],
             ['data' => 'discounted_amount',   'name' => 'discounted_amount',  'title' => 'Discount'],
             ['data' => 'paid_date',   'name' => 'paid_date',  'title' => 'Paid Date'],
-            ['data' => 'created_at',   'name' => 'created_at',  'title' => 'Date'],
-            [
-                'data'           => 'action',
-                'name'           => 'action',
-                'title'          => 'Action'
-            ]
+            ['data' => 'created_at',   'name' => 'created_at',  'title' => 'Date']
         ];
     }
 

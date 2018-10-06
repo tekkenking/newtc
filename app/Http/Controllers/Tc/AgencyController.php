@@ -3,10 +3,20 @@
 namespace App\Http\Controllers\Tc;
 
 use App\Http\Controllers\Controller;
+use App\Http\Repos\AgencycategoryRepo;
+use App\Http\Repos\AgencymodeRepo;
 use App\Http\Repos\AgencyRepo;
+use App\Http\Repos\AgencystatusRepo;
+use App\Http\Repos\BankRepo;
+use App\Http\Repos\GenderRepo;
+//use App\Http\Repos\LgaRepo;
+use App\Http\Repos\StateRepo;
+use App\Http\Requests\StoreAgency;
+use App\Jobs\SendSms;
+use App\Notifications\NewAgency;
 use Yajra\DataTables\Facades\DataTables;
 use Yajra\DataTables\Html\Builder;
-
+use App\Libs\Sms\SmsLib;
 
 class AgencyController extends Controller
 {
@@ -34,17 +44,45 @@ class AgencyController extends Controller
         return view('tc.agency.index', compact('html'));
     }
 
-    public function add()
+    public function add(
+        AgencycategoryRepo $agencycategoryRepo,
+        AgencystatusRepo $agencystatusRepo,
+        AgencymodeRepo $agencymodeRepo,
+        StateRepo $stateRepo,
+        BankRepo $bankRepo,
+        GenderRepo $genderRepo
+    )
     {
+        $categories = $agencycategoryRepo->all();
+        $statuses = $agencystatusRepo->all();
+        $modes  = $agencymodeRepo->all();
+        $states = $stateRepo->all();
+        $banks = $bankRepo->all();
+        $genders = $genderRepo->all();
 
+        return view('tc.agency.add', compact('categories', 'statuses', 'modes', 'states', 'banks', 'genders'));
     }
 
-    public function store()
+    public function store(StoreAgency $request, AgencyRepo $agencyRepo)
     {
+        $agencyAdmin = $agencyRepo->TCstaff_createAgency($request);
 
+        //Send SMS notification to the agency admin
+        $this->dispatch(new SendSms([
+            'to'    =>  $agencyAdmin->phone,
+            'body'   =>  __('sms.tc.register_agency')
+        ]));
+
+        //To send email notification
+        $agencyAdmin->notify(new NewAgency());
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Agency registered successfully'
+        ]);
     }
 
-    public function edit()
+    public function edit($agentID)
     {
 
     }

@@ -16,8 +16,9 @@ class StaffController extends Controller
 {
     public function index(Builder $builder, TcstaffRepo $tcstaffRepo)
     {
-        if (request()->ajax()) {
-            return DataTables::of($tcstaffRepo->model->with('user.userstatus')->select('tcstaff.*'))
+        if (request()->ajax() && !request()->edit) {
+            $query = $tcstaffRepo->getList();
+            return DataTables::of($query)
                 ->editColumn('user.is_confirmed', function($qr) {
                     return $qr->user->is_confirmed ? 'Yes' : 'No';
                 })
@@ -31,8 +32,10 @@ class StaffController extends Controller
                         foreach($qr->user->roles as $role){
                             $roles .= "<span class='label label-plain label-sm'>".$role->name."</span> ";
                         }
+                        return $roles;
                     }
-                    return $roles;
+
+                    return 'N/A';
                 })
                 ->addColumn('action', function($qr) {
                     return "<button type='button' data-toggle='modal' data-target='.bs-modal-lg' data-href='".route('tc.staff.edit', $qr->id)."' class='btn btn-success btn-xs'>Edit</button>";
@@ -43,6 +46,11 @@ class StaffController extends Controller
 
         $columns = $this->_getColumns();
         $html = $builder->columns($columns);
+
+        if(request()->edit) {
+            return view('tc.staff.index_ajax', compact('html'));
+        }
+
         return view('tc.staff.index', compact('html'));
     }
 

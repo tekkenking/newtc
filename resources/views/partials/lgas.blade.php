@@ -1,10 +1,10 @@
-<select name="lga" class="form-control" data-step="2">
+<select name="{{$name or 'lga_id'}}" class="form-control">
     <option value="">Select lga</option>
-    @if($lgas->isNotEmpty())
+    @if(isset($lgas) && $lgas->isNotEmpty())
         @foreach($lgas as $lga)
             <option
                     value="{{$lga->id}}"
-                    @if($default_id && $default_id === $lga->id) selected="selected" @endif>
+                    @if(isset($default_id) && $default_id === $lga->id) selected="selected" @endif>
                 {{$lga->name}}
             </option>
         @endforeach

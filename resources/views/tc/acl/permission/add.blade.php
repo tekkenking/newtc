@@ -5,7 +5,7 @@
     <h4 class="modal-title" id="exampleModalLabel">Add Permission</h4>
 </div>
 <div class="modal-body">
-    <form id="storePermission" method="post" action="{{route('acl.permission.store')}}">
+    <form id="storePermission" method="post" action="{{route('tc.acl.permission.store')}}">
         {{csrf_field()}}
         <div class="form-group">
             <label for="recipient-name" class="col-form-label">Name of permission:</label>
@@ -25,7 +25,7 @@
             form: '#storePermission',
             reset: true,
             callBack: function(result) {
-                $.get("{{route('acl.permission.index')}}?tab=true", function(data) {
+                $.get("{{route('tc.acl.permission.index')}}?tab=true", function(data) {
                     $('.tab-content .tab-pane.active.show .panel-body').html(data);
                 })
             }

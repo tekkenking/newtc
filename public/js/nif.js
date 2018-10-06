@@ -15741,6 +15741,8 @@ this.context[0];return b._responsive?-1!==c.inArray(!1,b._responsive.s.current):
                 e.preventDefault();
                 e.stopImmediatePropagation();
 
+                console.log('take it serious');
+
                 let $this = $(this);
                 startLadda();
                 $(this).off('click', sendToServer);

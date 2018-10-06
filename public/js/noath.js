@@ -5087,6 +5087,8 @@ return new RegExp(i).test(b)},errorMessage:"",errorMessageKey:""}),a.formUtils.a
                 e.preventDefault();
                 e.stopImmediatePropagation();
 
+                console.log('take it serious');
+
                 let $this = $(this);
                 startLadda();
                 $(this).off('click', sendToServer);

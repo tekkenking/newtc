@@ -23,7 +23,7 @@ class AclController extends Controller
                     return $perm;
                 })
                 ->addColumn('action', function($qr) {
-                    return "<button type='button' data-toggle='modal' data-target='.bs-modal-lg' data-href='".route('acl.role.edit', $qr->id)."' class='btn btn-success btn-sm'>Edit</button>";
+                    return "<button type='button' data-toggle='modal' data-target='.bs-modal-lg' data-href='".route('tc.acl.role.edit', $qr->id)."' class='btn btn-success btn-sm'>Edit</button>";
                 })
                 ->rawColumns(['permissions', 'action'])
                 ->toJson();
@@ -96,12 +96,12 @@ class AclController extends Controller
             return DataTables::of($permissionRepo->model->query())
                 ->addIndexColumn()
                 ->addColumn('action', function($qr) {
-                    return "<button type='button' data-toggle='modal' data-target='.bs-modal-nm' data-href='".route('acl.permission.edit', $qr->id)."' class='btn btn-success btn-sm'>Edit</button>";
+                    return "<button type='button' data-toggle='modal' data-target='.bs-modal-nm' data-href='".route('tc.acl.permission.edit', $qr->id)."' class='btn btn-success btn-sm'>Edit</button>";
                 })
                 ->toJson();
         }
 
-        $builder->ajax(route('acl.permission.index'));
+        $builder->ajax(route('tc.acl.permission.index'));
 
         $html = $builder->columns( $this->_getColumns() );
 

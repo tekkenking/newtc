@@ -25,7 +25,7 @@ class AgencyRepo extends BaseRepo
     public function filterAccountID($agencyID, $query)
     {
         return $this->_common($agencyID)
-            ->wherePivot('accountid', $query);
+            ->wherePivot('accountid', 'like', '%'. trim($query) . '%');
     }
 
     public function filterFlatName($agencyID, $query)
@@ -67,5 +67,55 @@ class AgencyRepo extends BaseRepo
                 $qr->select('id', 'fullname');
             }, 'servicestatus'])
             ->select('servicedhistories.*');
+    }
+
+    public function TCstaff_createAgency($request)
+    {
+        $agencyDataArr = $request->only([
+            'name',
+            'address',
+            'lga_id',
+            'email',
+            'phone',
+            'alt_phone',
+            'description',
+            'bank_id',
+            'bank_account_number',
+            'bank_account_name',
+            'bank_bvn',
+            'agencystatus_id',
+            'agencycategory_id',
+            'agencymode_id',
+        ]);
+
+        $agencyDataArr['tcstaff_id'] = user()->profile_id;
+        $agencyDataArr['token'] = generate_token(8, $this->model);
+
+        //We first create agency in DB
+        $agencyModel = $this->create($agencyDataArr);
+
+        //Create Agency default config in DB
+        $agencyModel->agencyconfig()
+            ->create(factory(\App\Http\Models\Agencyconfig::class)->make()->toArray());
+
+        //Create agency default staff as owner in DB
+        $staffModel = $agencyModel->agencystaffs()
+            ->create([
+                'fullname'  =>  $request->admin_fullname,
+                'address'   =>  $request->admin_address,
+                'lga_id'    =>  $request->admin_lga_id,
+                'alt_phone' =>  $request->admin_alt_phone,
+                'token'     =>  generate_token(8, new \App\Http\Models\Agencystaff()),
+                'is_admin'  =>  1
+            ]);
+
+        //Creating agency staff users
+        return $staffModel->user()
+            ->create([
+                'gender_id' =>  $request->admin_gender_id,
+                'email'     =>  $request->admin_email,
+                'phone'     =>  $request->admin_phone,
+                'password'  =>  str_random(6)
+            ]);
     }
 }

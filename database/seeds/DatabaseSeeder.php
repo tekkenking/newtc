@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
 
     private function _dataSeed()
     {
+        $this->call(Tcrootusers::class);
         $this->call(Tcstaff::class);
         $this->call(Barcodes::class);
         $this->call(Customers::class);

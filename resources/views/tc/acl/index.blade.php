@@ -8,8 +8,8 @@
 
     <div class="tabs-container">
         <ul class="nav nav-tabs" role="tablist">
-            <li><a class="nav-link active" data-toggle="tab" href="#roles" data-url="{{route('acl.role.index')}}?tab=true"> Roles</a></li>
-            <li><a class="nav-link" data-toggle="tab" href="#permissions" data-url="{{route('acl.permission.index')}}?tab=true">Permissions</a></li>
+            <li><a class="nav-link active" data-toggle="tab" href="#roles" data-url="{{route('tc.acl.role.index')}}?tab=true"> Roles</a></li>
+            <li><a class="nav-link" data-toggle="tab" href="#permissions" data-url="{{route('tc.acl.permission.index')}}?tab=true">Permissions</a></li>
         </ul>
         <div class="tab-content">
             <div role="tabpanel" id="roles" class="tab-pane active">

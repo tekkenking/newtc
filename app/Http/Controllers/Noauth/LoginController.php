@@ -87,7 +87,8 @@ class LoginController extends Controller
 
     private function _getLoggedRedirect()
     {
-        return $this->guard()->user()->profile_type;
+        //Should it be uroot then we'll redirect it to tc
+        return prepare_morph_url();
     }
 
     /**

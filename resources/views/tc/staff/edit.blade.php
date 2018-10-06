@@ -54,7 +54,7 @@
                 <div class="form-group row">
                     <label class="col-lg-2 col-form-label">LGA</label>
                     <div class="col-lg-10" id="lga-here">
-                        @include('partials.lgas', ['default_id' => $staff->lga->id])
+                        @include('partials.lgas', ['default_id' => $staff->lga->id, 'name' => 'lga'])
                     </div>
                 </div>
 
@@ -137,8 +137,8 @@
         $('#assignRole').processRequest({
             form: '#updateStaff',
             callBack: function(result) {
-                $.get("{{route('tc.staff.index')}}", function(data) {
-                    $('.tab-content .tab-pane.active.show .panel-body').html(data);
+                $.get("{{route('tc.staff.index')}}?edit=true", function(data) {
+                    $('#ajax-reload-target').html(data);
                 })
             }
         });

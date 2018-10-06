@@ -12,14 +12,7 @@
                 <div class="col-md-12">
                     <div class="ibox">
                         <div class="ibox-content">
-                            <div class="text-right">
-                                <button type="button" class="btn btn-danger btn-sm text-bold" data-toggle='modal' data-target='.bs-modal-lg' data-href='{{route('agency.staff.add')}}'>
-                                    <i class="fa fa-plus"></i>
-                                    Add Staff
-                                </button>
-                            </div>
 
-                            <hr>
                             <div class="table-responsive">
                                 <table id="customer-table" class="table table-bordered">
                                     <thead>

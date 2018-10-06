@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,15 +13,15 @@
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
+Route::get('/', function () {
+    return view('noauth.welcome');
+});
 
 Route::group(['namespace'   =>  'Noauth'], function(){
 
     Route::get('login', [
         'as'    => 'login',
-        'uses'  =>  'LoginController@index'
+        'uses'  => 'LoginController@index'
     ]);
 
     Route::post('login', [

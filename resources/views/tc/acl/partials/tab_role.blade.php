@@ -1,6 +1,6 @@
 
 <div class="text-right">
-    <button type="button" class="btn btn-primary btn-sm font-weight-bold" data-toggle='modal' data-target='.bs-modal-lg' data-href='{{route('acl.role.add')}}'>
+    <button type="button" class="btn btn-primary btn-sm font-weight-bold" data-toggle='modal' data-target='.bs-modal-lg' data-href='{{route('tc.acl.role.add')}}'>
         <i class="fa fa-plus"></i>
         Add Role
     </button>

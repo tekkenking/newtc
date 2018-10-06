@@ -41,37 +41,20 @@
                         <!--Category name-->
                         <li class="list-header">Navigation</li>
 
-                        <!--Menu list item-->
-                        <li>
-                            <a href="#" data-original-title="" title="">
-                                <i class="demo-pli-home"></i>
-                                <span class="menu-title">Dashboard</span>
-                            </a>
+                        @foreach(config_get_menu(agency_str()) as $menu)
+                            @php
+                                $link = prepare_href($menu);
+                            @endphp
+                            <li class="{{is_menu_active($link)}}">
+                                <a href="{{$link}}">
+                                    @if(isset($menu['icon']))
+                                        <i class="{{$menu['icon']}}"></i>
+                                    @endif
+                                    <span class="menu-title">{{$menu['name']}}</span>
+                                </a>
+                            </li>
+                    @endforeach
 
-                            <!--Menu list item-->
-                        <li>
-                            <a href="{{route('agency.staff.list')}}" data-original-title="" title="">
-                                <i class="demo-pli-split-vertical-2"></i>
-                                <span class="menu-title">Staff Management</span>
-                            </a>
-
-                            <!--Menu list item-->
-                        <li>
-                            <a href="{{route('agency.bill.list')}}" data-original-title="" title="">
-                                <i class="demo-pli-gear"></i>
-                                <span class="menu-title">
-                                    Bill Management
-                                </span>
-                            </a>
-                        </li>
-
-                        <!--Menu list item-->
-                        <li>
-                            <a href="{{route('agency.customers.list')}}" data-original-title="" title="">
-                                <i class="demo-pli-boot-2"></i>
-                                <span class="menu-title">Customers</span>
-                            </a>
-                        </li>
                     </ul>
 
                 </div>

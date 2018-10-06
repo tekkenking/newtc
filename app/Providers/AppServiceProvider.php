@@ -26,10 +26,11 @@ class AppServiceProvider extends ServiceProvider
         );
 
         Relation::morphMap([
-            'customer'      => 'App\Http\Models\Customer',
-            'tc'            => 'App\Http\Models\Tcstaff',
-            'agency'        => 'App\Http\Models\Agencystaff',
-            'governor'      => 'App\Http\Models\Governor'
+            customer_str()      => 'App\Http\Models\Customer',
+            tc_str()            => 'App\Http\Models\Tcstaff',
+            agency_str()        => 'App\Http\Models\Agencystaff',
+            governor_str()      => 'App\Http\Models\Governor',
+            uroot_str()         => 'App\Http\Models\Tcrootuser'
         ]);
 
         Blade::component('components.alert', 'alert');

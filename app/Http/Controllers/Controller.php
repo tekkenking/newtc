@@ -24,7 +24,7 @@ class Controller extends BaseController
     protected function logActivity($action, $subject)
     {
         if(auth()->check()) {
-            $type = auth()->user()->profile_type.'_log';
+            $type = prepare_morph_url().'_log';
             $type($action, $subject);
         }
     }

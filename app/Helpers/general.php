@@ -21,7 +21,7 @@ if( ! function_exists('extract_char')){
     {
         if( $string == ''){
             trigger_error(__FUNCTION__ . ' Requires 1 string parameter', E_USER_WARNING);
-            return;
+            return false;
         }
 
         $allowedTypes = array(	'float'		=>	'([\d]+\.[\d]+)|',
@@ -169,5 +169,83 @@ if(! function_exists('format_currency')){
 if(! function_exists('unformat_money') ){
     function unformat_money($money=0.00){
         return format_num(extract_char($money, array('unformat_money')));
+    }
+}
+
+if(! function_exists('uroot_str')) {
+    function uroot_str() {
+        return 'uroot';
+    }
+}
+
+if(! function_exists('tc_str')) {
+    function tc_str() {
+        return 'tc';
+    }
+}
+
+if(! function_exists('agency_str')) {
+    function agency_str() {
+        return 'agency';
+    }
+}
+
+if(! function_exists('customer_str')) {
+    function customer_str() {
+        return 'customer';
+    }
+}
+
+if(! function_exists('governor_str')) {
+    function governor_str() {
+        return 'governor';
+    }
+}
+
+if(! function_exists('sitename')) {
+    function sitename(){
+        return __('general.sitename');
+    }
+}
+
+if(! function_exists('prepare_morph_url')) {
+    function prepare_morph_url() {
+        $url = user()->profile_type;
+        return ($url == uroot_str()) ? tc_str() : $url;
+    }
+}
+
+if(! function_exists('user')) {
+    function user($guard = null) {
+        $guard = ($guard) ? $guard : config('auth.defaults.guard');
+        return auth($guard)->user();
+    }
+}
+
+if(! function_exists('is_menu_active')) {
+    function is_menu_active($link) {
+        return request()->fullUrl() === $link ? 'active' : 'not-active';
+    }
+}
+
+if(! function_exists('prepare_href')) {
+    function prepare_href($menu) {
+        return (isset($menu['link']) && $menu['link'] !== '#')
+            ? route($menu['link'])
+            : '#';
+    }
+}
+
+if(! function_exists('config_get_menu')) {
+    function config_get_menu($key) {
+        return config('menu.'.$key.'.mainmenu');
+    }
+}
+
+if( ! function_exists('can_user')) {
+    function can_user($permission) {
+        return (auth()->check() && (user()->can($permission) || user()->profile_type == 'uroot'))
+            ? true
+            : false;
     }
 }

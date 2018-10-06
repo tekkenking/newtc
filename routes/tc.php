@@ -2,146 +2,157 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::group(['namespace'   =>  'Tc', 'prefix' => 'tc', 'middleware' => ['auth', 'section:tc']], function(){
+Route::group([
+    'namespace'     =>  'Tc',
+    'prefix'        => 'tc',
+    'as'            => 'tc.',
+    'middleware'    => ['auth', 'section:tc']], function(){
 
     Route::get('/', [
         'as'    => 'dashboard',
         'uses'  =>  'DashboardController@index'
     ]);
 
-    Route::group(['prefix' => 'staff'], function(){
+    Route::group(['prefix' => 'staff', 'as' => 'staff.'], function(){
         Route::get('/', [
-            'as'    =>  'tc.staff.index',
+            'as'    =>  'index',
             'uses'  =>  'StaffController@index'
         ]);
 
         Route::get('add', [
-            'as'    =>  'tc.staff.add',
+            'as'    =>  'add',
             'uses'  =>  'StaffController@add'
         ]);
 
         Route::post('store', [
-            'as'    =>  'tc.staff.store',
+            'as'    =>  'store',
             'uses'  =>  'StaffController@store'
         ]);
 
         Route::get('edit/{id}', [
-            'as'    =>  'tc.staff.edit',
+            'as'    =>  'edit',
             'uses'  =>  'StaffController@edit'
         ]);
 
         Route::post('update/{id}', [
-            'as'    =>  'tc.staff.update',
+            'as'    =>  'update',
             'uses'  =>  'StaffController@update'
         ]);
     });
 
     Route::group(['prefix' => 'acl'], function(){
         Route::get('/', [
-            'as'    =>  'acl',
+            'as'    =>  'get.roles',
             'uses'  =>  'AclController@getRoles'
         ]);
 
-        Route::group(['prefix' => 'role'], function(){
+        Route::group(['prefix' => 'role', 'as' => 'acl.role.'], function(){
             Route::get('/',[
-                'as'    =>  'acl.role.index',
+                'as'    =>  'index',
                 'uses'  =>  'AclController@getRoles'
             ]);
 
             Route::get('add', [
-                'as'    =>  'acl.role.add',
+                'as'    =>  'add',
                 'uses'  =>  'AclController@addRole'
             ]);
 
             Route::post('store', [
-                'as'    =>  'acl.role.store',
+                'as'    =>  'store',
                 'uses'  =>  'AclController@storeRole'
             ]);
 
             Route::get('edit/{id}', [
-                'as'    =>  'acl.role.edit',
+                'as'    =>  'edit',
                 'uses'  =>  'AclController@editRole'
             ]);
 
             Route::post('update', [
-                'as'    =>  'acl.role.update',
+                'as'    =>  'update',
                 'uses'  =>  'AclController@updateRole'
             ]);
         });
 
-        Route::group(['prefix' => 'permission'], function(){
+        Route::group(['prefix' => 'permission', 'as' => 'acl.permission.'], function(){
             Route::get('/',[
-                'as'    =>  'acl.permission.index',
+                'as'    =>  'index',
                 'uses'  =>  'AclController@getPermissions'
             ]);
 
             Route::get('add', [
-                'as'    =>  'acl.permission.add',
+                'as'    =>  'add',
                 'uses'  =>  'AclController@addPermission'
             ]);
 
             Route::post('store', [
-                'as'    =>  'acl.permission.store',
+                'as'    =>  'store',
                 'uses'  =>  'AclController@storePermission'
             ]);
 
             Route::get('edit/{id}', [
-                'as'    =>  'acl.permission.edit',
+                'as'    =>  'edit',
                 'uses'  =>  'AclController@editPermission'
             ]);
 
             Route::post('update', [
-                'as'    =>  'acl.permission.update',
+                'as'    =>  'update',
                 'uses'  =>  'AclController@updatePermission'
             ]);
 
         });
     });
 
-    Route::group(['prefix' => 'agency'], function (){
-
-        Route::group(['prefix' => 'details'], function(){
-            Route::get('/{id}', [
-                'as'    =>  'tc.agency.details.index',
-                'uses'  =>  'AgencyController@detailsIndex'
-            ]);
-
-            Route::get('{id}/packages', [
-                'as'    =>  'tc.agency.details.packages',
-                'uses'  =>  'AgencyController@detailsPackages'
-            ]);
-
-            Route::get('{id}/info', [
-                'as'    =>  'tc.agency.details.info',
-                'uses'  =>  'AgencyController@detailsInfo'
-            ]);
-        });
+    Route::group(['prefix' => 'agency', 'as' => 'agency.'], function (){
 
         Route::get('/', [
-            'as'    =>  'tc.agency.index',
+            'as'    =>  'index',
             'uses'  =>  'AgencyController@index'
         ]);
 
         Route::get('add', [
-            'as'    =>  'tc.agency.add',
+            'as'    =>  'add',
             'uses'  =>  'AgencyController@add'
         ]);
 
         Route::post('store', [
-            'as'    =>  'tc.agency.store',
+            'as'    =>  'store',
             'uses'  =>  'AgencyController@store'
         ]);
 
         Route::get('edit/{id}', [
-            'as'    =>  'tc.agency.edit',
+            'as'    =>  'edit',
             'uses'  =>  'AgencyController@edit'
         ]);
 
         Route::post('update', [
-            'as'    =>  'tc.agency.update',
+            'as'    =>  'update',
             'uses'  =>  'AgencyController@update'
         ]);
 
+        Route::group(['prefix' => 'details', 'as' => 'details.'], function(){
+            Route::get('/{id}', [
+                'as'    =>  'index',
+                'uses'  =>  'AgencyController@detailsIndex'
+            ]);
+
+            Route::get('{id}/packages', [
+                'as'    =>  'packages',
+                'uses'  =>  'AgencyController@detailsPackages'
+            ]);
+
+            Route::get('{id}/info', [
+                'as'    =>  'info',
+                'uses'  =>  'AgencyController@detailsInfo'
+            ]);
+        });
+
+    });
+
+    Route::group(['prefix'  =>  'barcode', 'as' => 'barcode.'], function() {
+        Route::get('', [
+            'as'    =>  'index',
+            'uses'  =>  'BarcodeController@index'
+        ]);
     });
 
 });
